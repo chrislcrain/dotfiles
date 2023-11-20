@@ -54,6 +54,7 @@ return packer.startup(function(use)
     use('mbbill/undotree')
     use{'catppuccin/nvim', as = "catppuccin"}
     use('tpope/vim-fugitive')
+    use('tpope/vim-commentary')
     use {
         'nvim-lualine/lualine.nvim',
         requires = { 'nvim-tree/nvim-web-devicons', opt = true }
