@@ -1,0 +1,11 @@
+# Better ls
+alias ls='ls -al --color=auto'
+alias ll='ls -al --color=auto'
+# Better grep - with color
+alias grep='grep --color=auto'
+
+# Better history - add dates and process elapse times
+alias history='history -i -D'
+
+# For dotfile management
+alias config='/usr/bin/git --git-dir=/Users/chriscrain/.cfg/ --work-tree=/Users/chriscrain'
