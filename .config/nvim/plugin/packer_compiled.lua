@@ -164,6 +164,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/chriscrain/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
+  },
+  ["vim-terraform"] = {
+    loaded = true,
+    path = "/Users/chriscrain/.local/share/nvim/site/pack/packer/start/vim-terraform",
+    url = "https://github.com/hashivim/vim-terraform"
   }
 }
 

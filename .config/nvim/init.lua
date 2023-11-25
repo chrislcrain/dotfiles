@@ -3,22 +3,18 @@ require("set")
 
 vim.g.mapleader = " "
 
-vim.cmd.colorscheme("catppuccin-mocha")
+-- vim.cmd.colorscheme("catppuccin-mocha")
 -- vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
 
 require('lualine').setup {
   options = {
     theme = 'powerline_dark',  -- Replace with your theme
-    -- other options
   },
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'branch'},
-    -- Modify this line to show the full path
     lualine_c = {{'filename', file_status = true, path = 1}},
-    -- other sections
   },
-  -- other configurations
 }
 
  --require("nvim-tree").setup({
@@ -35,18 +31,9 @@ require('lualine').setup {
  --})
 
 require'nvim-web-devicons'.setup {
- -- if set to false all icons will have the default icon's color
  color_icons = true;
- -- globally enable default icons (default to false)
- -- will get overriden by `get_icons` option
  default = true;
- -- globally enable "strict" selection of icons - icon will be looked up in
- -- different tables, first by filename, and if not found by extension; this
- -- prevents cases when file doesn't have any extension but still gets some icon
- -- because its name happened to match some extension (default to false)
  strict = true;
- -- same as `override` but specifically for overrides by filename
- -- takes effect when `strict` is true
  override_by_filename = {
   [".gitignore"] = {
     icon = "",
@@ -54,8 +41,6 @@ require'nvim-web-devicons'.setup {
     name = "Gitignore"
   }
  };
- -- same as `override` but specifically for overrides by extension
- -- takes effect when `strict` is true
  override_by_extension = {
   ["log"] = {
     icon = "",
@@ -64,3 +49,10 @@ require'nvim-web-devicons'.setup {
   }
  };
 }
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "sql",
+    callback = function()
+        vim.opt_local.commentstring = "-- %s"
+    end,
+})

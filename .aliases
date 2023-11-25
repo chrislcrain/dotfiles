@@ -1,6 +1,7 @@
 # Better ls
 alias ls='ls -al --color=auto'
 alias ll='ls -al --color=auto'
+
 # Better grep - with color
 alias grep='grep --color=auto'
 
