@@ -89,10 +89,10 @@ _G.packer_plugins = {
     path = "/Users/chriscrain/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
-  ["copilot.vim"] = {
+  ["javascript-libraries-syntax"] = {
     loaded = true,
-    path = "/Users/chriscrain/.local/share/nvim/site/pack/packer/start/copilot.vim",
-    url = "https://github.com/github/copilot.vim"
+    path = "/Users/chriscrain/.local/share/nvim/site/pack/packer/start/javascript-libraries-syntax",
+    url = "https://github.com/othree/javascript-libraries-syntax"
   },
   ["lsp-zero.nvim"] = {
     loaded = true,
@@ -164,6 +164,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/chriscrain/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
+  },
+  ["vim-javascript"] = {
+    loaded = true,
+    path = "/Users/chriscrain/.local/share/nvim/site/pack/packer/start/vim-javascript",
+    url = "https://github.com/pangloss/vim-javascript"
+  },
+  ["vim-jsx-pretty"] = {
+    loaded = true,
+    path = "/Users/chriscrain/.local/share/nvim/site/pack/packer/start/vim-jsx-pretty",
+    url = "https://github.com/maxmellon/vim-jsx-pretty"
   },
   ["vim-terraform"] = {
     loaded = true,

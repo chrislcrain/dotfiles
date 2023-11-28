@@ -1,10 +1,12 @@
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 require("plugins")
 require("set")
 
+
 vim.g.mapleader = " "
 
--- vim.cmd.colorscheme("catppuccin-mocha")
--- vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
 
 require('lualine').setup {
   options = {
@@ -17,18 +19,18 @@ require('lualine').setup {
   },
 }
 
- --require("nvim-tree").setup({
- --  sort_by = "case_sensitive",
- --  view = {
- --    width = 30,
- --  },
- --  renderer = {
- --    group_empty = true,
- --  },
- --  filters = {
- --    dotfiles = true,
- --  },
- --})
+require("nvim-tree").setup({
+  sort_by = "case_sensitive",
+  view = {
+    width = 30,
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
+})
 
 require'nvim-web-devicons'.setup {
  color_icons = true;

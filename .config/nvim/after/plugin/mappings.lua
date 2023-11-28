@@ -1,7 +1,7 @@
 -- vim.keymap.set('v', '<Leader>/', ':s/^/# /<CR>', { noremap = true, silent = true })
 vim.keymap.set('v', '<Leader>/', ':Commentary<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<Leader>/', ':Commentary<CR>', { noremap = true, silent = true })
-vim.keymap.set("n","<leader>pv", vim.cmd.Ex)
+vim.keymap.set("n","<leader>pv", ':NvimTreeToggle<CR>')
 vim.keymap.set("n","<leader>u", vim.cmd.UndotreeToggle)
 vim.keymap.set("n","<F2>", ':FloatermToggle<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', 'Ï', ':TerraformFmt<CR>', { noremap = true, silent = true })

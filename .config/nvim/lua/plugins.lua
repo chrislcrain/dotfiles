@@ -41,6 +41,9 @@ packer.init({
 -- Install your plugins here
 return packer.startup(function(use)
 	use("wbthomason/packer.nvim") -- Have packer manage itself	
+    use('maxmellon/vim-jsx-pretty') 
+    use('othree/javascript-libraries-syntax') 
+    use('pangloss/vim-javascript') 
     use("voldikss/vim-floaterm")
     use({'rose-pine/neovim', 
         as = 'rose-pine',
@@ -49,7 +52,8 @@ return packer.startup(function(use)
     end})
     use("hashivim/vim-terraform")
     use("nvim-tree/nvim-web-devicons")
-    use('github/copilot.vim') 
+    -- use('github/copilot.vim') 
+    -- use("lukas-reineke/lsp-format.nvim")
     use('williamboman/mason.nvim')
     use('williamboman/mason-lspconfig.nvim')
     use('mbbill/undotree')
