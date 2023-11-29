@@ -40,9 +40,14 @@ packer.init({
 
 -- Install your plugins here
 return packer.startup(function(use)
-	use("wbthomason/packer.nvim") -- Have packer manage itself	
+    use("wbthomason/packer.nvim") -- Have packer manage itself	
+    use("tpope/vim-surround")
+    use {
+        "windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup {} end
+    }
     use('maxmellon/vim-jsx-pretty') 
-    use('othree/javascript-libraries-syntax') 
+    -- use('othree/javascript-libraries-syntax') 
     use('pangloss/vim-javascript') 
     use("voldikss/vim-floaterm")
     use({'rose-pine/neovim', 

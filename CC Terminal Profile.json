@@ -78,7 +78,7 @@
     "Blue Component" : 0.58823529411764708,
     "Green Component" : 0.58039215686274515
   },
-  "Working Directory" : "\/Users\/chriscrain\/Documents\/Code\/SR_Repos\/sr-am-infra",
+  "Working Directory" : "\/Users\/chriscrain\/Documents\/Code",
   "Blinking Cursor" : false,
   "Disable Window Resizing" : true,
   "Sync Title" : false,
@@ -110,7 +110,7 @@
   "Non Ascii Font" : "Monaco 12",
   "Vertical Spacing" : 0.95999999999999996,
   "Use Bold Font" : true,
-  "Option Key Sends" : 0,
+  "Option Key Sends" : 2,
   "Selected Text Color" : {
     "Red Component" : 0.57647058823529407,
     "Color Space" : "sRGB",
@@ -381,7 +381,7 @@
     "Green Component" : 0.63137254901960782
   },
   "Normal Font" : "JetBrainsMonoNFM-Regular 15",
-  "Custom Directory" : "No",
+  "Custom Directory" : "Yes",
   "Ansi 0 Color" : {
     "Red Component" : 0.027450980392156862,
     "Color Space" : "sRGB",
