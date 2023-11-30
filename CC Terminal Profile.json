@@ -305,9 +305,10 @@
     }
   },
   "Window Type" : 0,
+  "Blur Radius" : 37.448071808510626,
   "Cursor Boost" : 0,
   "Initial Text" : "",
-  "Blur" : false,
+  "Blur" : true,
   "Badge Color" : {
     "Red Component" : 1,
     "Color Space" : "sRGB",
@@ -342,7 +343,7 @@
     "Blue Component" : 0.58823529411764708,
     "Green Component" : 0.58039215686274515
   },
-  "Transparency" : 0.051988031914893582,
+  "Transparency" : 0.12107878989361701,
   "Ansi 1 Color" : {
     "Red Component" : 0.86274509803921573,
     "Color Space" : "sRGB",

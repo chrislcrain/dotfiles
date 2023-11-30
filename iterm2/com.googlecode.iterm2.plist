@@ -223,6 +223,8 @@
 	<false/>
 	<key>HotkeyMigratedFromSingleToMulti</key>
 	<true/>
+	<key>LeftTabBarWidth</key>
+	<real>50</real>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -439,7 +441,9 @@
 			<key>Blinking Cursor</key>
 			<false/>
 			<key>Blur</key>
-			<false/>
+			<true/>
+			<key>Blur Radius</key>
+			<real>37.448071808510626</real>
 			<key>Bold Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -910,7 +914,7 @@
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
 			<key>Transparency</key>
-			<real>0.051988031914893582</real>
+			<real>0.12107878989361701</real>
 			<key>Unlimited Scrollback</key>
 			<false/>
 			<key>Use Bold Font</key>
