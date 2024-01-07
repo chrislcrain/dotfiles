@@ -52,9 +52,16 @@ require'nvim-web-devicons'.setup {
  };
 }
 
+require'colorizer'.setup()
+
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "sql",
     callback = function()
         vim.opt_local.commentstring = "-- %s"
     end,
+})
+
+vim.api.nvim_create_autocmd({'BufWinEnter'}, {
+    pattern = {"*.jsx"},
+    command = "set filetype=javascript"
 })

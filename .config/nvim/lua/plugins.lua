@@ -41,6 +41,7 @@ packer.init({
 -- Install your plugins here
 return packer.startup(function(use)
     use("wbthomason/packer.nvim") -- Have packer manage itself	
+    use("windwp/nvim-ts-autotag")
     use("tpope/vim-surround")
     use("ThePrimeagen/harpoon")
     use {
@@ -98,6 +99,7 @@ return packer.startup(function(use)
             {'L3MON4D3/LuaSnip'},
         }
     }
+    use ('norcalli/nvim-colorizer.lua')
 
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
