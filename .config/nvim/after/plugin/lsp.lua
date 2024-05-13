@@ -1,5 +1,8 @@
 local lsp_zero = require('lsp-zero')
 
+require'lspconfig'.terraformls.setup{}
+require'lspconfig'.tflint.setup{}
+
 lsp_zero.on_attach(function(client, bufnr)
   local opts = {buffer = bufnr, remap = false}
 
@@ -42,3 +45,4 @@ cmp.setup({
     ['<C-y>'] = cmp.mapping.complete(),
   }),
 })
+

@@ -9,7 +9,8 @@ fi
 
 export ZSH="$HOME/.oh-my-zsh"
 export ZSH_CUSTOM="$HOME/.zsh_custom"
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH:$HOME/dotnet"
+export DOTNET_ROOT="$HOME/dotnet"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
@@ -27,3 +28,6 @@ source $ZSH/oh-my-zsh.sh
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi

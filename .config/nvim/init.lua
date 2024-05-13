@@ -4,9 +4,7 @@ vim.g.loaded_netrwPlugin = 1
 require("plugins")
 require("set")
 
-
 vim.g.mapleader = " "
-
 
 require('lualine').setup {
   options = {
@@ -28,7 +26,7 @@ require("nvim-tree").setup({
     group_empty = true,
   },
   filters = {
-    dotfiles = true,
+    dotfiles = false,
   },
 })
 
@@ -61,7 +59,20 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
+vim.lsp.set_log_level("off")
+
 vim.api.nvim_create_autocmd({'BufWinEnter'}, {
     pattern = {"*.jsx"},
     command = "set filetype=javascript"
 })
+
+-- Recognize TF files
+vim.cmd([[silent! autocmd! filetypedetect BufRead,BufNewFile *.tf]])
+vim.cmd([[autocmd BufRead,BufNewFile *.hcl set filetype=hcl]])
+vim.cmd([[autocmd BufRead,BufNewFile .terraformrc,terraform.rc set filetype=hcl]])
+vim.cmd([[autocmd BufRead,BufNewFile *.tf,*.tfvars set filetype=terraform]])
+vim.cmd([[autocmd BufRead,BufNewFile *.tfstate,*.tfstate.backup set filetype=json]])
+
+-- Format TF files on save
+vim.cmd([[let g:terraform_fmt_on_save=1]])
+vim.cmd([[let g:terraform_align=1]])

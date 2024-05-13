@@ -2,6 +2,9 @@
 alias ls='ls -al --color=auto'
 alias ll='ls -al --color=auto'
 
+# Instaconfig nvim
+alias nvim-config='nvim ~/.config/nvim'
+
 # Better grep - with color
 alias grep='grep --color=auto'
 
