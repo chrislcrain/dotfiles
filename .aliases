@@ -2,6 +2,9 @@
 alias ls='ls -al --color=auto'
 alias ll='ls -al --color=auto'
 
+# nvim directly to current dir
+# alias nvim='nvim .'
+
 # Instaconfig nvim
 alias nvim-config='nvim ~/.config/nvim'
 
