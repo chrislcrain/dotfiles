@@ -7,7 +7,7 @@ vim.opt_local.smartindent = true
 vim.opt_local.expandtab = true
 
 -- Set buffer-local variables
-vim.b.vcm_tab_complete = 'javascript'
+vim.b.vcm_tab_complete = "javascript"
 vim.b.javascript_fold = 1
 
 -- Set global variables

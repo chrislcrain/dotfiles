@@ -19,6 +19,7 @@ plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
   zsh-completions
+  direnv
 )
 
 source $ZSH/oh-my-zsh.sh
