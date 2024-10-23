@@ -1,9 +1,9 @@
-[submodule "/home/chriscrain/.config/ohmyzsh/.zsh_custom/plugins/zsh-autosuggestions"]
-	path = /home/chriscrain/.config/ohmyzsh/.zsh_custom/plugins/zsh-autosuggestions
+[submodule ".config/ohmyzsh/.zsh_custom/plugins/zsh-autosuggestions"]
+	path = .config/ohmyzsh/.zsh_custom/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions.git
-[submodule "/home/chriscrain/.config/ohmyzsh/.zsh_custom/plugins/zsh-completions"]
-	path = /home/chriscrain/.config/ohmyzsh/.zsh_custom/plugins/zsh-completions
+[submodule ".config/ohmyzsh/.zsh_custom/plugins/zsh-completions"]
+	path = .config/ohmyzsh/.zsh_custom/plugins/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions
-[submodule "/home/chriscrain/.config/ohmyzsh/.zsh_custom/plugins/powerlevel10k"]
-	path = /home/chriscrain/.config/ohmyzsh/.zsh_custom/plugins/powerlevel10k
+[submodule ".config/ohmyzsh/.zsh_custom/plugins/powerlevel10k"]
+	path = .config/ohmyzsh/.zsh_custom/plugins/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
