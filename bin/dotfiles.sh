@@ -16,7 +16,7 @@ git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME submodule update --force --recu
 git config --global user.email "22624146+chrislcrain@users.noreply.github.com"
 git config --global user.name "Your Name"
 
-sudo chsh -s $(which zsh)
 # Set zsh as default shell
+sudo chsh -s $(which zsh)
 
 exec zsh

@@ -28,8 +28,8 @@ sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 1
 sudo curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
 sudo rm -rf /opt/nvim
 sudo tar -C /opt -xzf nvim-linux64.tar.gz
-export PATH="$PATH:/opt/nvim-linux64/bin"
 rm -f ~/.nvim-linux64.tar.gz
 
 # Need to chmod 777 .vim directory
 sudo chmod 777 ~/.vim
+sudo chmod 777 ~/.vim/undodir/
