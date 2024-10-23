@@ -4,6 +4,6 @@
 [submodule ".config/ohmyzsh/.zsh_custom/plugins/zsh-completions"]
 	path = .config/ohmyzsh/.zsh_custom/plugins/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions
-[submodule ".config/ohmyzsh/.zsh_custom/plugins/powerlevel10k"]
-	path = .config/ohmyzsh/.zsh_custom/plugins/powerlevel10k
+[submodule ".config/ohmyzsh/.zsh_custom/themes/powerlevel10k"]
+	path = .config/ohmyzsh/.zsh_custom/themes/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
