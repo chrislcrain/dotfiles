@@ -1,6 +1,3 @@
-[submodule "/home/chriscrain/.config/ohmyzsh/.oh-my-zsh"]
-	path = /home/chriscrain/.config/ohmyzsh/.oh-my-zsh
-	url = https://github.com/ohmyzsh/ohmyzsh.git
 [submodule "/home/chriscrain/.config/ohmyzsh/.zsh_custom/plugins/zsh-autosuggestions"]
 	path = /home/chriscrain/.config/ohmyzsh/.zsh_custom/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions.git
