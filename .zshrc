@@ -7,8 +7,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export ZSH="$HOME/.oh-my-zsh"
-export ZSH_CUSTOM="$HOME/.zsh_custom"
+export ZSH="$HOME/.config/ohmyzsh/.oh-my-zsh"
+export ZSH_CUSTOM="$HOME/.config/ohmyzsh/.zsh_custom"
 export PATH="$HOME/.local/bin:$PATH:$HOME/dotnet"
 export DOTNET_ROOT="$HOME/dotnet"
 
