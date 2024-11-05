@@ -9,11 +9,13 @@ export ZSH="$HOME/.config/ohmyzsh/.oh-my-zsh"
 export ZSH_CUSTOM="$HOME/.config/ohmyzsh/.zsh_custom"
 export PATH="$HOME/.local/bin:$PATH:$HOME/dotnet"
 export DOTNET_ROOT="$HOME/dotnet"
+export DIRENV_LOG_FORMAT=""
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 plugins=(
   git
+  poetry
   zsh-autosuggestions
   zsh-completions
   direnv
@@ -33,4 +35,4 @@ fi
 
 export PATH="$PATH:/opt/nvim-linux64/bin"
 
-# eval "$(direnv hook zsh)"
+source $XDG_CONFIG_HOME/ohmyzsh/.zsh_custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

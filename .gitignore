@@ -1,2 +1,4 @@
 .dotfiles
+known_hosts
+known_hosts.old
 **/.DS_Store
