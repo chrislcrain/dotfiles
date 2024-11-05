@@ -19,6 +19,7 @@ plugins=(
   direnv
 )
 
+source $HOME/.profile
 source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -31,3 +32,5 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 export PATH="$PATH:/opt/nvim-linux64/bin"
+
+# eval "$(direnv hook zsh)"

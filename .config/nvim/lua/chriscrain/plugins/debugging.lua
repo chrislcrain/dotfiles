@@ -1,6 +1,7 @@
 return {
   "mfussenegger/nvim-dap",
   dependencies = {
+    "mfussenegger/nvim-dap-python",
     "nvim-lua/plenary.nvim",
     "rcarriga/nvim-dap-ui",
     "nvim-neotest/nvim-nio",
@@ -18,9 +19,17 @@ return {
     local dapui = require("dapui")
     local nvdt = require("nvim-dap-virtual-text")
     local dap_ps = require("dap-powershell")
+    local dap_py = require("dap-python")
     dap_ps.setup()
     nvdt.setup()
     dapui.setup()
+
+    -- Get the path to the Poetry environment for the current project
+    -- local handle = io.popen("poetry env info --path")
+    -- local poetry_venv_path = handle:read("*a"):gsub("\n", "") .. "/bin/python"
+    -- handle:close()
+    dap_py.setup()
+
     dap.listeners.before.attach.dapui_config = function()
       dapui.open()
     end

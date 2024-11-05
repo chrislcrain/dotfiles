@@ -1,6 +1,6 @@
 -- Force persistent_undo
 if vim.fn.has("persistent_undo") == 1 then
-  local target_path = vim.fn.expand("~/.vim/undodir")
+  local target_path = vim.fn.expand("$HOME/.vim/undodir")
 
   -- Create the directory if it doesn't exist
   if vim.fn.isdirectory(target_path) == 0 then
@@ -26,8 +26,8 @@ vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
   command = "set filetype=javascript",
 })
 
--- Recognize TF files
 vim.cmd([[silent! autocmd! filetypedetect BufRead,BufNewFile *.tf]])
+-- Recognize TF files
 vim.cmd([[autocmd BufRead,BufNewFile *.hcl set filetype=hcl]])
 vim.cmd([[autocmd BufRead,BufNewFile .terraformrc,terraform.rc set filetype=hcl]])
 vim.cmd([[autocmd BufRead,BufNewFile *.tf,*.tfvars set filetype=terraform]])
@@ -158,8 +158,8 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 })
 
 -- vim.filetype.add({
---   pattern = {
 --     [".*"] = {
+--   pattern = {
 --       function(path, buf)
 --         return vim.bo[buf]
 --             and vim.bo[buf].filetype ~= "bigfile"
