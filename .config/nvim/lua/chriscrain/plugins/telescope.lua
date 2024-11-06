@@ -1,8 +1,11 @@
 return {
   "nvim-telescope/telescope.nvim",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+  },
   keys = {
     { "<leader>/", false },
-    { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
+    { "<leader>ff", "<cmd>Telescope find_files hidden=true<cr>", desc = "Find Files" },
     -- { "<C-p>", "<cmd>Telescope git_files <cr>", desc = "Search git files" },
     { "<leader>fs", "<cmd>Telescope live_grep<cr>", desc = "Live grep search" },
   },
@@ -12,6 +15,11 @@ return {
       layout_config = { prompt_position = "top" },
       sorting_strategy = "ascending",
       winblend = 0,
+    },
+  },
+  pickers = {
+    find_files = {
+      find_command = { "fd", "--type", "f", "--hidden", "--exclude", ".git" },
     },
   },
 }

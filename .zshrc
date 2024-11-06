@@ -10,6 +10,7 @@ export ZSH_CUSTOM="$HOME/.config/ohmyzsh/.zsh_custom"
 export PATH="$HOME/.local/bin:$PATH:$HOME/dotnet"
 export DOTNET_ROOT="$HOME/dotnet"
 export DIRENV_LOG_FORMAT=""
+export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
