@@ -28,5 +28,7 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 export PATH="$PATH:/opt/nvim-linux64/bin"
+export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+export CODER_SSH_FORWARD_AGENT=true
 
 source $XDG_CONFIG_HOME/ohmyzsh/.zsh_custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

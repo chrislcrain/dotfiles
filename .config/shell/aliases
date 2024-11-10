@@ -25,6 +25,3 @@ alias grep='grep --color=auto'
 
 # Better history - add dates and process elapse times
 alias history='history -i -D'
-
-# For dotfile management
-# alias dotfiles='/usr/bin/git --git-dir=/Users/chriscrain/.dotfiles/ --work-tree=/Users/chriscrain'
