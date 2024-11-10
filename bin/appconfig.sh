@@ -13,13 +13,13 @@ sudo apt-get install luarocks -y
 sudo apt-get install python3.10-venv -y
 
 # Install PowerShell
-sudo apt-get install -y wget apt-transport-https software-properties-common
-source /etc/os-release
-wget -q https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb
-sudo dpkg -i packages-microsoft-prod.deb
-rm packages-microsoft-prod.deb
-sudo apt-get update
-sudo apt-get install -y powershell
+# sudo apt-get install -y wget apt-transport-https software-properties-common
+# source /etc/os-release
+# curl -q https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb
+# sudo dpkg -i packages-microsoft-prod.deb
+# rm packages-microsoft-prod.deb
+# sudo apt-get update
+# sudo apt-get install -y powershell
 
 # python fixes
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 1
@@ -31,5 +31,7 @@ sudo tar -C /opt -xzf nvim-linux64.tar.gz
 rm -f ~/.nvim-linux64.tar.gz
 
 # Need to chmod 777 .vim directory
+mkdir ~/.vim
+mkdir ~/.vim/undodir/
 sudo chmod 777 ~/.vim
 sudo chmod 777 ~/.vim/undodir/
