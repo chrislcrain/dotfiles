@@ -5,6 +5,12 @@ cd ~
 # Uncomment this if setting up for WSL - 1Password integration
 # git config --global core.sshCommand ssh.exe
 
+# Check for SSH agent and wait until it's available
+while ! ssh-add -L >/dev/null 2>&1; do
+    echo "Waiting for SSH agent..."
+    sleep 2
+done
+
 git config --global user.email "22624146+chrislcrain@users.noreply.github.com"
 git config --global user.name "Your Name"
 
