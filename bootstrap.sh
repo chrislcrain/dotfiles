@@ -5,6 +5,8 @@ cd ~
 # Uncomment this if setting up for WSL - 1Password integration
 # git config --global core.sshCommand ssh.exe
 
+echo $SSH_AUTH_SOCK
+
 # Check for SSH agent and wait until it's available
 while ! ssh-add -L >/dev/null 2>&1; do
     echo "Waiting for SSH agent..."
