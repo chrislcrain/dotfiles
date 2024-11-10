@@ -2,8 +2,6 @@
 
 cd ~
 
-whoami
-
 # Uncomment this if setting up for WSL - 1Password integration
 # git config --global core.sshCommand ssh.exe
 
