@@ -13,13 +13,15 @@ sudo apt-get install luarocks -y
 sudo apt-get install python3-venv -y
 
 # Install PowerShell
-sudo apt-get install -y wget apt-transport-https software-properties-common
-source /etc/os-release
-curl -q https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb
-sudo dpkg -i packages-microsoft-prod.deb
-rm packages-microsoft-prod.deb
+# sudo apt-get install -y wget apt-transport-https software-properties-common
+# source /etc/os-release
+# curl -R -O https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb
+# sudo dpkg -i packages-microsoft-prod.deb
+# rm packages-microsoft-prod.deb
+# sudo apt-get update
+# sudo apt-get install -y powershell
+
 sudo apt-get update
-sudo apt-get install -y powershell
 
 # python fixes
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 1
