@@ -10,7 +10,6 @@ git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME fetch --all
 git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME reset --hard
 git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME submodule update --force --recursive --init --remote
 
-
 sudo apt update
 sudo apt install zsh -y
 
