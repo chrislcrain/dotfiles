@@ -14,6 +14,7 @@ sudo apt update
 sudo apt install zsh -y
 
 ZSH=$HOME/.config/ohmyzsh/.oh-my-zsh ZSH_CUSTOM=$HOME/.config/ohmyzsh/.zsh_custom sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+cat ~/.zshrc.pre-oh-my-zsh >> ~/.zshrc && source ~/.zshrc
 
 git config --global user.email "22624146+chrislcrain@users.noreply.github.com"
 git config --global user.name "Your Name"
