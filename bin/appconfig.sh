@@ -10,7 +10,7 @@ sudo make install
 
 sudo apt-get install npm -y
 sudo apt-get install luarocks -y
-sudo apt-get install python3.10-venv -y
+sudo apt-get install python3-venv -y
 
 # Install PowerShell
 # sudo apt-get install -y wget apt-transport-https software-properties-common
