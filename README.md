@@ -20,7 +20,7 @@ An alias to `dotfiles` should be used **after** this set-up
 # start from home directory
 cd ~
 # clone just the .git directory to a subpath
-git clone --bare https://github.com/ajilty/dotfiles.git $HOME/.dotfiles
+git clone --bare https://github.com/chrislcrain/dotfiles.git $HOME/.dotfiles
 # fetch without pulling down files
 git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME fetch --all
 # pull down files, handle conflicts with current go reckless with `reset --hard`
