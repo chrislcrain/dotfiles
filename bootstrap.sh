@@ -28,13 +28,12 @@ sudo apt-get install luarocks -y
 sudo apt-get install python3-venv -y
 sudo apt-get install ripgrep -y
 
-# Install PowerShell
-sudo apt-get install -y wget apt-transport-https software-properties-common
-# sudo source /etc/os-release
-sudo curl -L -R -O https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb
-sudo dpkg -i $HOME/packages-microsoft-prod.deb
-sudo apt-get update
-sudo apt-get install -y powershell
+# Download the Microsoft repository GPG keys
+wget -q "https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/packages-microsoft-prod.deb" -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+rm packages-microsoft-prod.deb
+sudo apt update
+sudo apt install -y powershell
 
 # python fixes
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 1
