@@ -31,8 +31,8 @@ sudo apt-get install python3-venv -y
 sudo apt-get install -y wget apt-transport-https software-properties-common
 sudo source /etc/os-release
 curl -R -O https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb
-sudo dpkg -i packages-microsoft-prod.deb
-rm packages-microsoft-prod.deb
+sudo dpkg -i $HOME/packages-microsoft-prod.deb
+rm $HOME/packages-microsoft-prod.deb
 sudo apt-get update
 sudo apt-get install -y powershell
 
