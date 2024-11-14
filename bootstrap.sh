@@ -26,6 +26,7 @@ sudo make install
 sudo apt-get install npm -y
 sudo apt-get install luarocks -y
 sudo apt-get install python3-venv -y
+sudo apt-get install rip-grep -y
 
 # Install PowerShell
 sudo apt-get install -y wget apt-transport-https software-properties-common
