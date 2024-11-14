@@ -29,7 +29,8 @@ sudo apt-get install python3-venv -y
 sudo apt-get install ripgrep -y
 
 # Download the Microsoft repository GPG keys
-wget -q "https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/packages-microsoft-prod.deb" -O packages-microsoft-prod.deb
+source /etc/os-release
+wget -q "https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb" -O packages-microsoft-prod.deb
 sudo dpkg -i packages-microsoft-prod.deb
 rm packages-microsoft-prod.deb
 sudo apt update
