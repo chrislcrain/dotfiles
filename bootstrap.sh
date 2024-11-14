@@ -30,10 +30,9 @@ sudo apt-get install ripgrep -y
 
 # Install PowerShell
 sudo apt-get install -y wget apt-transport-https software-properties-common
-sudo source /etc/os-release
+# sudo source /etc/os-release
 curl -R -O https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb
 sudo dpkg -i $HOME/packages-microsoft-prod.deb
-rm $HOME/packages-microsoft-prod.deb
 sudo apt-get update
 sudo apt-get install -y powershell
 
@@ -46,11 +45,16 @@ sudo rm -rf /opt/nvim
 sudo tar -C /opt -xzf nvim-linux64.tar.gz
 rm -f ~/.nvim-linux64.tar.gz
 
+# Remove artifacts
+rm -f lua-*.tar.gz
+rm -f nvim-linux64.tar.gz
+rm -f packages-microsoft-prod.deb
+
 # Need to chmod 777 .vim directory
 mkdir ~/.vim
 mkdir ~/.vim/undodir/
 sudo chmod 777 ~/.vim
 sudo chmod 777 ~/.vim/undodir/
-sudo chsh -s $(which zsh) $(whoami)
+chsh -s $(which zsh) $USER
 
-exec zsh
+exec "$(which zsh)"
