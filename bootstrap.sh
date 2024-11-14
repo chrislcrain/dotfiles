@@ -17,7 +17,7 @@ cp ~/.zshrc.pre-oh-my-zsh ~/.zshrc
 
 # Get lua
 sudo apt-get install build-essential libreadline-dev unzip -y
-curl -R -O http://www.lua.org/ftp/lua-5.3.5.tar.gz
+sudo curl -R -O http://www.lua.org/ftp/lua-5.3.5.tar.gz
 tar -zxf lua-5.3.5.tar.gz
 cd lua-5.3.5
 make linux test
@@ -31,7 +31,7 @@ sudo apt-get install ripgrep -y
 # Install PowerShell
 sudo apt-get install -y wget apt-transport-https software-properties-common
 # sudo source /etc/os-release
-curl -R -O https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb
+sudo curl -L -R -O https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb
 sudo dpkg -i $HOME/packages-microsoft-prod.deb
 sudo apt-get update
 sudo apt-get install -y powershell
