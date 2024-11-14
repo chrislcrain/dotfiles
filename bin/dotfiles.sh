@@ -58,5 +58,6 @@ mkdir ~/.vim
 mkdir ~/.vim/undodir/
 sudo chmod 777 ~/.vim
 sudo chmod 777 ~/.vim/undodir/
+sudo chsh -s $(which zsh) $(whoami)
 
 exec zsh
