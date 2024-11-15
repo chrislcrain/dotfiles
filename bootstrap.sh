@@ -55,6 +55,6 @@ mkdir ~/.vim
 mkdir ~/.vim/undodir/
 sudo chmod 777 ~/.vim
 sudo chmod 777 ~/.vim/undodir/
-chsh -s $(which zsh) $USER
+# chsh -s $(which zsh) $USER
 
-exec "$(which zsh)"
+# exec "$(which zsh)"

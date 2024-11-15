@@ -16,12 +16,18 @@ return {
     },
   },
   config = function()
+    local mason_registry = require("mason-registry")
+    if mason_registry.is_installed("powershell-editor-services") then
+      local dap_ps = require("dap-powershell")
+      dap_ps.setup()
+    else
+      vim.notify("PowerShell Editor Services (powershell_es) is not installed.", vim.log.levels.WARN)
+    end
+
     local dap = require("dap")
     local dapui = require("dapui")
     local nvdt = require("nvim-dap-virtual-text")
-    local dap_ps = require("dap-powershell")
     local dap_py = require("dap-python")
-    dap_ps.setup()
     nvdt.setup()
     dapui.setup()
 
