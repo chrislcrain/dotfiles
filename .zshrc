@@ -31,9 +31,11 @@ export CODER_SSH_FORWARD_AGENT=TRUE
 
 source $XDG_CONFIG_HOME/ohmyzsh/.zsh_custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Automatically start tmux if not already inside a session
+# Apply MacOS configs
 if [[ "$(uname)" == "Darwin" ]]; then
+    export kubectl="minikube kubectl --"
     export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+    # Automatically start tmux if not already inside a session
     if [[ -z "$TMUX" ]] && [[ -z "$SSH_TTY" ]] && [[ -n "$PS1" ]]; then
         tmux attach-session -t default || tmux new-session -s default
     fi
