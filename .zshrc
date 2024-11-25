@@ -21,7 +21,10 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# Setup fuzzyfinder
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Setup  pyenv
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
@@ -33,10 +36,17 @@ source $XDG_CONFIG_HOME/ohmyzsh/.zsh_custom/plugins/zsh-syntax-highlighting/zsh-
 
 # Apply MacOS configs
 if [[ "$(uname)" == "Darwin" ]]; then
+    # Configure minikube alias
     export kubectl="minikube kubectl --"
+
+    # Point SSH agent to 1Password
     export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+
     # Automatically start tmux if not already inside a session
     if [[ -z "$TMUX" ]] && [[ -z "$SSH_TTY" ]] && [[ -n "$PS1" ]]; then
         tmux attach-session -t default || tmux new-session -s default
     fi
+
+    # Force tmp permissions
+    # chmod 177 /tmp
 fi
