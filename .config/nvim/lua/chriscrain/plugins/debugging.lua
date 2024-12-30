@@ -16,13 +16,15 @@ return {
     },
   },
   config = function()
-    local mason_registry = require("mason-registry")
-    if mason_registry.is_installed("powershell-editor-services") then
-      local dap_ps = require("dap-powershell")
-      dap_ps.setup()
-    else
-      vim.notify("PowerShell Editor Services (powershell_es) is not installed.", vim.log.levels.WARN)
-    end
+    -- local mason_registry = require("mason-registry")
+    -- if mason_registry.is_installed("powershell-editor-services") then
+    --   local dap_ps = require("dap-powershell")
+    --   dap_ps.setup()
+    -- else
+    --   vim.notify("PowerShell Editor Services (powershell_es) is not installed.", vim.log.levels.WARN)
+    -- end
+    local adapter_python_path = require("mason-registry").get_package("debugpy"):get_install_path()
+      .. "/venv/bin/python"
 
     local dap = require("dap")
     local dapui = require("dapui")
@@ -35,7 +37,7 @@ return {
     -- local handle = io.popen("poetry env info --path")
     -- local poetry_venv_path = handle:read("*a"):gsub("\n", "") .. "/bin/python"
     -- handle:close()
-    dap_py.setup()
+    dap_py.setup(adapter_python_path)
 
     dap.listeners.before.attach.dapui_config = function()
       dapui.open()
@@ -51,13 +53,15 @@ return {
     end
     dap.listeners.after.event_initialized["dapui_config"] = function()
       dapui.open({})
-      dap_ps.correct_repl_colors()
+      -- dap_ps.correct_repl_colors()
     end
     vim.keymap.set("n", "<leader>dt", dapui.toggle)
     vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint)
     vim.keymap.set("n", "<leader>dc", dap.continue)
-    vim.keymap.set("n", "<leader>dr", function()
-      dapui.open({ reset = true })
-    end)
+    vim.keymap.set("n", "<leader>ds", dap.terminate)
+    vim.keymap.set("n", "<leader>dr", dap.restart)
+    -- vim.keymap.set("n", "<leader>dr", function()
+    --   dapui.open({ reset = true })
+    -- end)
   end,
 }

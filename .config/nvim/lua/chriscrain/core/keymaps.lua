@@ -40,3 +40,7 @@ map("v", "<A-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
 
 -- Remove highlights after using find
 map("n", "<Leader>cc", ":nohl<CR>", { noremap = true, silent = true })
+
+-- Indent text
+map("v", "<Tab>", ">gv", { noremap = true, silent = true })
+map("v", "<S-Tab>", "<gv", { noremap = true, silent = true })

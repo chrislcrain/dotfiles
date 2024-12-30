@@ -26,7 +26,7 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-export PATH="$PATH:/opt/nvim-linux64/bin"
+export PATH="$PATH:/opt/nvim-linux64/bin:/Applications/WezTerm.app/Contents/MacOS"
 export CODER_SSH_FORWARD_AGENT=TRUE
 
 source $XDG_CONFIG_HOME/ohmyzsh/.zsh_custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -35,8 +35,13 @@ source $XDG_CONFIG_HOME/ohmyzsh/.zsh_custom/plugins/zsh-syntax-highlighting/zsh-
 if [[ "$(uname)" == "Darwin" ]]; then
     export kubectl="minikube kubectl --"
     export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
-    # Automatically start tmux if not already inside a session
-    if [[ -z "$TMUX" ]] && [[ -z "$SSH_TTY" ]] && [[ -n "$PS1" ]]; then
-        tmux attach-session -t default || tmux new-session -s default
-    fi
+    export PATH="$PATH:/Library/PostgreSQL/17/bin"
+    export PATH=${HOME}/.dotty/latest/bin:${PATH}
 fi
+##### DEVOPS MARKER START #####
+source ~/.dotty/latest/lib/aws-common.zsh
+source ~/.dotty/latest/lib/utils.zsh
+##### DEVOPS MARKER END #####
+
+# direnv hook into shell (not necessary because it is a core plugin)
+eval "$(direnv hook zsh)"

@@ -44,3 +44,5 @@ opt.swapfile = false
 -- force zsh
 opt.shell = "zsh"
 
+-- enable mouse support
+vim.o.mouse = "a"
