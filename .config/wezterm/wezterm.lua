@@ -85,7 +85,7 @@ config.use_fancy_tab_bar = false
 config.native_macos_fullscreen_mode = true
 
 -- Keys and mappings
-config.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 600 }
+config.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 800 }
 config.keys = {
 	-- More easy split key mappings
 	{ key = "v", mods = "LEADER", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
