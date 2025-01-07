@@ -4,3 +4,6 @@
 
 [include]
     path = ~/.local/config/git/config
+[user]
+	name = Chris Crain
+	email = chrislcrain@gmail.com
