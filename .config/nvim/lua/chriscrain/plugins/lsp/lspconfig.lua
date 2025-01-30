@@ -76,6 +76,16 @@ return {
         capabilities = capabilities,
         on_attach = on_attach,
         filetypes = { "python" },
+        settings = {
+          pylsp = {
+            plugins = {
+              pycodestyle = {
+                ignore = { "E501" }, -- Suppress warnings for E501
+                -- maxLineLength = 120 -- Optional: Set a specific max line length
+              },
+            },
+          },
+        },
       }),
       lspconfig["powershell_es"].setup({
         bundle_path = vim.fn.stdpath("data") .. "/mason/packages/powershell-editor-services",

@@ -6,6 +6,7 @@
 
 - `zsh`
 - `git`
+- `wezterm (preferred for MacOS)`
 <!-- - `curl` or `wget` (for [Zinit](https://github.com/zdharma-continuum/zinit)) -->
 
 ## Initial Setup
@@ -45,4 +46,3 @@ exec zsh
 - https://www.atlassian.com/git/tutorials/dotfiles
 - https://shreevatsa.wordpress.com/2008/03/30/zshbash-startup-files-loading-order-bashrc-zshrc-etc/
 <!-- - https://github.com/zdharma-continuum/zinit -->
-

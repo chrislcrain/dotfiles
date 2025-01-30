@@ -42,7 +42,6 @@ if [[ "$(uname)" == "Darwin" ]]; then
     # Point SSH agent to 1Password
     export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
     export PATH="$PATH:/Library/PostgreSQL/17/bin"
-    export PATH=${HOME}/.dotty/latest/bin:${PATH}
 
     # Automatically start tmux if not already inside a session
     # if [[ -z "$TMUX" ]] && [[ -z "$SSH_TTY" ]] && [[ -n "$PS1" ]]; then
@@ -52,10 +51,11 @@ if [[ "$(uname)" == "Darwin" ]]; then
     # Force tmp permissions
     # chmod 177 /tmp
 fi
-##### DEVOPS MARKER START #####
-source ~/.dotty/latest/lib/aws-common.zsh
-source ~/.dotty/latest/lib/utils.zsh
-##### DEVOPS MARKER END #####
 
 # direnv hook into shell (not necessary because it is a core plugin)
 eval "$(direnv hook zsh)"
+##### DEVOPS MARKER START #####
+source /Users/chriscrain/.dotty/latest/lib/aws-common.zsh
+source /Users/chriscrain/.dotty/latest/lib/utils.zsh
+export PATH=${HOME}/.dotty/latest/bin:${PATH}
+##### DEVOPS MARKER END #####
