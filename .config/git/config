@@ -7,3 +7,5 @@
 [user]
 	name = Chris Crain
 	email = 22624146+chrislcrain@users.noreply.github.com
+[push]
+  autoSetupRemote = true
