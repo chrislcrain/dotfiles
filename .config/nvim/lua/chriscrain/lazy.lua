@@ -9,7 +9,10 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   })
 end
+
 vim.opt.rtp:prepend(lazypath)
+
+-- vim.ui.input = require("snacks").input
 
 require("lazy").setup({ { import = "chriscrain.plugins" }, { import = "chriscrain.plugins.lsp" } }, {
   checker = {

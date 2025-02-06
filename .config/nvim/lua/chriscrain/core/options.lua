@@ -46,3 +46,6 @@ opt.shell = "zsh"
 
 -- enable mouse support
 vim.o.mouse = "a"
+
+-- enable snacks input window
+-- vim.ui.input = require("snacks").input
