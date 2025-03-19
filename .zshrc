@@ -50,10 +50,14 @@ if [[ "$(uname)" == "Darwin" ]]; then
 
     # Force tmp permissions
     # chmod 177 /tmp
+    export PATH="$PATH:$HOME/.config/lua/lua-5.1/src"
 fi
 
 # direnv hook into shell (not necessary because it is a core plugin)
 eval "$(direnv hook zsh)"
+
+export VAULT_ADDR="https://vault.stoneridgeam.com"
+
 ##### DEVOPS MARKER START #####
 source /Users/chriscrain/.dotty/latest/lib/aws-common.zsh
 source /Users/chriscrain/.dotty/latest/lib/utils.zsh
