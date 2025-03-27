@@ -1,5 +1,5 @@
 -- Set alias for CodeCompanion
-vim.cmd([[cnoreabbrev cc CodeCompanion]])
+vim.cmd([[cab cc CodeCompanion]])
 
 -- Force persistent_undo
 if vim.fn.has("persistent_undo") == 1 then

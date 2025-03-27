@@ -34,6 +34,13 @@ return {
                 contains_code = true,
               },
             },
+            ["buffer"] = {
+              description = "Select a buffer using Telescope",
+              opts = {
+                provider = "telescope", -- Other options include 'default', 'mini_pick', 'fzf_lua', snacks
+                contains_code = true,
+              },
+            },
           },
           adapter = "copilot",
         },
