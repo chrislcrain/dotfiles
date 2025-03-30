@@ -1,0 +1,13 @@
+return {
+  "github/copilot.vim",
+  lazy = false,
+  config = function()
+    vim.g.copilot_filetypes = {
+      ["*"] = false,
+      ["lua"] = true,
+      ["python"] = true,
+      ["powershell"] = true,
+      -- Add more filetypes as needed
+    }
+  end,
+}

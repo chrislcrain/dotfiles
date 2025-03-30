@@ -1,0 +1,34 @@
+#######################################################
+# ENVIROMENT VARIABLES
+#######################################################
+
+# DEBUG
+# echo "file: ~/.env"
+
+# Set XDG Base Directory Specification
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+
+# Add user bin directory to path
+export PATH=$PATH:~/.local/bin
+
+# Hard set poetry directory
+export POETRY_CONFIG_DIR="$XDG_CONFIG_HOME/pypoetry"
+
+# Prepare ZSH for install and config
+export ZSH="$HOME/.config/ohmyzsh/.oh-my-zsh"
+export ZSH_CUSTOM="$HOME/.config/ohmyzsh/.zsh_custom"
+
+# Dotnet
+export PATH="$HOME/.local/bin:$PATH:$HOME/dotnet"
+export DOTNET_ROOT="$HOME/dotnet"
+
+# Suppress direnv output
+export DIRENV_LOG_FORMAT=""
+
+# 1Password SSH key integration
+# export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+
+# exec zsh
