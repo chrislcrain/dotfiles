@@ -1,4 +1,4 @@
-{{- $email := promptStringOnce . "email" "Email address" -}}
+{{$noreplyEmail := promptStringOnce . "noreplyEmail" "What is your Github noreply email address" -}}
 
 [data]
-    email = {{ $email | quote }}
+noreplyEmail = {{ $noreplyEmail | quote }}
