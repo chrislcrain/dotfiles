@@ -43,6 +43,7 @@ return {
         "ruff", -- python formatter
         "luacheck", -- lua linter
         "tflint",
+        "debugpy",
       },
     })
   end,
