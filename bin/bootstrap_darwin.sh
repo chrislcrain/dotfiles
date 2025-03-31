@@ -48,3 +48,7 @@ fi
 if [ ! -f "$ZSH_CUSTOM/plugins/poetry/_poetry" ]; then
     poetry completions zsh > "$ZSH_CUSTOM/plugins/poetry/_poetry"
 fi
+
+chsh -s $(which zsh)
+
+exec zsh
