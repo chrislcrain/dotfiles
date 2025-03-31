@@ -32,9 +32,7 @@ then
     echo "python3 could not be found"
     exit 1
 else
-    if ! pipx show debugpy > /dev/null 2>&1; then
-        pipx install debugpy
-    fi
+    pipx install debugpy
 fi
 
 # Add poetry and poetry configs to the system
