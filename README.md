@@ -4,12 +4,36 @@
 
 ## Requirements
 
+- `git`
+- `homebrew`
 - `chezmoi`
 - `zsh`
-- `git`
-- `wezterm (preferred for MacOS)`
 <!-- - `curl` or `wget` (for [Zinit](https://github.com/zdharma-continuum/zinit)) -->
 
 ## Initial Setup
 
-This is a work in progress! Hang tight
+Install Homebrew
+
+```sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Install chezmoi
+
+```sh
+brew install chezmoi
+```
+
+Clone repo files to chezmoi directory
+
+```sh
+chezmoi cd
+git remote add origin -t chezmoi-migration https://github.com/chrislcrain/dotfiles.git
+git push -u origin chezmoi-migration
+```
+
+Run bootstrap script
+
+```sh
+sh ~/bootstrap.sh
+```
