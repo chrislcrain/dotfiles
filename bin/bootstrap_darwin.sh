@@ -4,6 +4,7 @@ cd ~
 
 # Locate the Brewfile
 BREWFILE="~/.config/brew/Brewfile"
+ZSH_CUSTOM="~/.config/ohmyzsh/.zsh_custom"
 
 if [ -z "$BREWFILE" ]; then
   echo "Brewfile not found in the system."
