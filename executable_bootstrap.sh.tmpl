@@ -1,5 +1,5 @@
 {{- if eq .chezmoi.os "darwin" -}}
-{{-   include ".bootstrap_darwin.sh" -}}
+{{-   include "bootstrap_darwin.sh" -}}
 {{- else if eq .chezmoi.os "linux" -}}
-{{-   include ".bootstrap_linux.sh" -}}
+{{-   include "bootstrap_linux.sh" -}}
 {{- end -}}
