@@ -33,6 +33,7 @@ git remote add origin -t chezmoi-migration https://github.com/chrislcrain/dotfil
 git pull
 chezmoi init
 chezmoi apply
+source ~/.config/shell/environment
 ```
 
 Run bootstrap script
