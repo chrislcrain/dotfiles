@@ -32,8 +32,8 @@ then
     echo "python3 could not be found"
     exit 1
 else
-    if ! python3 -m pip show debugpy > /dev/null 2>&1; then
-        python3 -m pip install debugpy
+    if ! pipx show debugpy > /dev/null 2>&1; then
+        pipx install debugpy
     fi
 fi
 
