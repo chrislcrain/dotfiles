@@ -39,4 +39,17 @@ else
     python3 -m pip install debugpy
 fi
 
+# Add poetry and poetry configs to the system
+if ! command -v poetry &> /dev/null; then
+    pipx install poetry
+fi
+
+if [ ! -d "$ZSH_CUSTOM/plugins/poetry" ]; then
+    mkdir -p "$ZSH_CUSTOM/plugins/poetry"
+fi
+
+if [ ! -f "$ZSH_CUSTOM/plugins/poetry/_poetry" ]; then
+    poetry completions zsh > "$ZSH_CUSTOM/plugins/poetry/_poetry"
+fi
+
 {{- end }}
