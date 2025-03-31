@@ -4,8 +4,9 @@
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
+DISABLE_AUTO_UPDATE="true"
 ZSH_THEME="powerlevel10k/powerlevel10k"
+export EDITOR="nvim"
 
 plugins=(
   git
@@ -36,20 +37,9 @@ source $XDG_CONFIG_HOME/ohmyzsh/.zsh_custom/plugins/zsh-syntax-highlighting/zsh-
 
 # Apply MacOS configs
 if [[ "$(uname)" == "Darwin" ]]; then
-    # Configure minikube alias
-    # export kubectl="minikube kubectl --"
-
     # Point SSH agent to 1Password
     export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
     export PATH="$PATH:/Library/PostgreSQL/17/bin"
-
-    # Automatically start tmux if not already inside a session
-    # if [[ -z "$TMUX" ]] && [[ -z "$SSH_TTY" ]] && [[ -n "$PS1" ]]; then
-    #     tmux attach-session -t default || tmux new-session -s default
-    # fi
-
-    # Force tmp permissions
-    # chmod 177 /tmp
     export PATH="$PATH:$HOME/.config/lua/lua-5.1/src"
 fi
 

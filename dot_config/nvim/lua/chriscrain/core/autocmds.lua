@@ -35,11 +35,16 @@ vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
 })
 
 vim.cmd([[silent! autocmd! filetypedetect BufRead,BufNewFile *.tf]])
+
 -- Recognize TF files
 vim.cmd([[autocmd BufRead,BufNewFile *.hcl set filetype=hcl]])
 vim.cmd([[autocmd BufRead,BufNewFile .terraformrc,terraform.rc set filetype=hcl]])
 vim.cmd([[autocmd BufRead,BufNewFile *.tf,*.tfvars set filetype=terraform]])
 vim.cmd([[autocmd BufRead,BufNewFile *.tfstate,*.tfstate.backup set filetype=json]])
+
+-- Recignize template files
+vim.cmd([[autocmd BufRead,BufNewFile *.sh.tmpl set filetype=sh]])
+vim.cmd([[autocmd BufRead,BufNewFile *.toml.tmpl set filetype=toml]])
 
 -- Format TF files on save
 vim.cmd([[let g:terraform_fmt_on_save=1]])

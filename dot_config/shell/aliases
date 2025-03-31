@@ -15,7 +15,7 @@ alias ls='ls -al --color=auto'
 alias ll='ls -al --color=auto'
 
 # Instaconfig nvim
-alias nvim-config='nvim ~/.config/nvim'
+alias nvim-config='chezmoi edit --apply ~/.config/nvim'
 
 # nvim directly into ~/.config
 alias config='nvim ~/.config'
