@@ -24,12 +24,14 @@ Install chezmoi
 brew install chezmoi
 ```
 
-Clone repo files to chezmoi directory
+Clone repo files to chezmoi directory and sync files
 
 ```sh
 chezmoi cd
 git remote add origin -t chezmoi-migration https://github.com/chrislcrain/dotfiles.git
 git push -u origin chezmoi-migration
+chezmoi init
+chezmoi apply
 ```
 
 Run bootstrap script
