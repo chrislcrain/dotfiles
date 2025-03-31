@@ -1,0 +1,54 @@
+#!/bin/bash
+cd ~
+
+# Common configurations
+
+# MacOS configurations
+{{- if eq .chezmoi.config.os "darwin" }}
+
+# Check for Xcode Command Line Tools and install if not present
+if ! xcode-select -p &>/dev/null; then
+  echo "Xcode Command Line Tools not found. Installing..."
+  xcode-select --install
+  # Wait until the Xcode Command Line Tools are installed
+  until xcode-select -p &>/dev/null; do
+    sleep 5
+  done
+fi
+
+# Install Homebrew unattended if not found
+if ! command -v brew &> /dev/null
+then
+    echo "Homebrew not found. Installing..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+    echo "Homebrew is already installed."
+fi
+
+# Locate the Brewfile
+BREWFILE="~/.config/brew/Brewfile"
+
+if [ -z "$BREWFILE" ]; then
+  echo "Brewfile not found in the system."
+  exit 1
+fi
+
+# Install packages from the Brewfile
+brew bundle --file="$BREWFILE"
+echo "Homebrew and packages from Brewfile installed successfully."
+
+
+if [ ! -d ~/.vim ]; then
+    mkdir ~/.vim
+    chmod 777 ~/.vim
+fi
+
+# Add .vim undodir for undotree
+if [ ! -d ~/.vim/undodir ]; then
+    mkdir ~/.vim/undodir/
+    chmod 777 ~/.vim/undodir/
+fi
+
+{{- end }}
