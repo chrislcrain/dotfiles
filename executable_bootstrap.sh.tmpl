@@ -30,4 +30,13 @@ if [ ! -d ~/.vim/undodir ]; then
     chmod 777 ~/.vim/undodir/
 fi
 
+# Add debugpy to system python
+if ! command -v python3 &> /dev/null
+then
+    echo "python3 could not be found"
+    exit 1
+else
+    python3 -m pip install debugpy
+fi
+
 {{- end }}
