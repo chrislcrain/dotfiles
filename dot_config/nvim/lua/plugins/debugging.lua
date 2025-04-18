@@ -5,6 +5,7 @@ return {
     "mfussenegger/nvim-dap-python",
     "nvim-lua/plenary.nvim",
     "rcarriga/nvim-dap-ui",
+    "rcarriga/nvim-notify",
     "nvim-neotest/nvim-nio",
     "Willem-J-an/nvim-dap-powershell",
     "theHamsta/nvim-dap-virtual-text",

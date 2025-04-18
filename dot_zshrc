@@ -45,11 +45,3 @@ fi
 
 # direnv hook into shell (not necessary because it is a core plugin)
 eval "$(direnv hook zsh)"
-
-export VAULT_ADDR="https://vault.stoneridgeam.com"
-
-##### DEVOPS MARKER START #####
-source /Users/chriscrain/.dotty/latest/lib/aws-common.zsh
-source /Users/chriscrain/.dotty/latest/lib/utils.zsh
-export PATH=${HOME}/.dotty/latest/bin:${PATH}
-##### DEVOPS MARKER END #####

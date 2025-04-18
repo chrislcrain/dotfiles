@@ -1,0 +1,5 @@
+std = {
+  globals = { "vim", "require", "strategy", "query", "globals", "math", "std", "codes", "ranges", "client", "string" }, -- these globals can be set and accessed.
+}
+codes = true
+ranges = true

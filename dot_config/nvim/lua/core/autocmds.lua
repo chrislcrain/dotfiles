@@ -29,11 +29,6 @@ vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
   command = "set filetype=javascript",
 })
 
-vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
-  pattern = { "*.toml.tmpl" },
-  command = "set filetype=toml",
-})
-
 vim.cmd([[silent! autocmd! filetypedetect BufRead,BufNewFile *.tf]])
 
 -- Recognize TF files
@@ -45,6 +40,7 @@ vim.cmd([[autocmd BufRead,BufNewFile *.tfstate,*.tfstate.backup set filetype=jso
 -- Recignize template files
 vim.cmd([[autocmd BufRead,BufNewFile *.sh.tmpl set filetype=sh]])
 vim.cmd([[autocmd BufRead,BufNewFile *.toml.tmpl set filetype=toml]])
+vim.cmd([[autocmd BufRead,BufNewFile *_zshrc.tmpl set filetype=zsh]])
 
 -- Format TF files on save
 vim.cmd([[let g:terraform_fmt_on_save=1]])

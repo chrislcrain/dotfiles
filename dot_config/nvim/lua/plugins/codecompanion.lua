@@ -29,24 +29,26 @@ return {
             ["file"] = {
               -- Location to the slash command in CodeCompanion
               callback = "strategies.chat.slash_commands.file",
-              description = "Select a file using Telescope",
+              description = "Select files using Telescope",
               opts = {
                 provider = "telescope", -- Other options include 'default', 'mini_pick', 'fzf_lua', snacks
                 contains_code = true,
-              },
-            },
-            ["buffer"] = {
-              description = "Select a buffer using Telescope",
-              opts = {
-                provider = "telescope", -- Other options include 'default', 'mini_pick', 'fzf_lua', snacks
-                contains_code = true,
+                multi_select = true, -- Enable multi-selection
               },
             },
           },
-          adapter = "copilot",
+          ["buffer"] = {
+            description = "Select a buffer using Telescope",
+            opts = {
+              provider = "telescope", -- Other options include 'default', 'mini_pick', 'fzf_lua', snacks
+              contains_code = true,
+            },
+          },
         },
-        inline = { adapter = "copilot" },
+        adapter = "copilot",
       },
+      inline = { adapter = "copilot" },
     })
+    vim.keymap.set("n", "<C-Space>", "<cmd>CodeCompanionChat Slash file<CR>", opts) -- multi-select files
   end,
 }

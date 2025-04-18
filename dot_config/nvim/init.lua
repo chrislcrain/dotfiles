@@ -1,2 +1,2 @@
-require("chriscrain.core")
-require("chriscrain.lazy")
+require(".core")
+require(".lazy")

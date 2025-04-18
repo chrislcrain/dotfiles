@@ -14,7 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- vim.ui.input = require("snacks").input
 
-require("lazy").setup({ { import = "chriscrain.plugins" }, { import = "chriscrain.plugins.lsp" } }, {
+require("lazy").setup({ { import = "plugins" }, { import = "plugins.lsp" } }, {
   checker = {
     enabled = true,
     notify = false,
