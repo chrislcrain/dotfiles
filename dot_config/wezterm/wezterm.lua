@@ -52,10 +52,11 @@ local ccpuccin = wezterm.color.get_builtin_schemes()["Catppuccin Macchiato"]
 ccpuccin.background = "#000000"
 ccpuccin.cursor_bg = "#00ffff"
 
-config.font = wezterm.font("JetBrains Mono", { weight = "Bold" })
-config.font_size = 15.0
+config.font = wezterm.font("DankMono Nerd Font Mono", { weight = "Bold" })
+config.font_size = 16.0
 config.window_background_opacity = 0.85
 config.macos_window_background_blur = 30
+config.color_scheme = "Catppuccin Macchiato"
 config.color_schemes = {
 	-- ["Abernathy"] = ccpuccin,
 	["Catppuccin Macchiato"] = ccpuccin,
@@ -80,6 +81,12 @@ config.max_fps = 120
 
 -- Use basic tab bar
 config.use_fancy_tab_bar = false
+
+-- Hide tab if only one
+config.hide_tab_bar_if_only_one_tab = true
+
+-- Hide title bar
+config.window_decorations = "RESIZE"
 
 -- MacOS full screen
 config.native_macos_fullscreen_mode = true
