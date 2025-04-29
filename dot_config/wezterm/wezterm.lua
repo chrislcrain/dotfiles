@@ -53,7 +53,7 @@ ccpuccin.background = "#000000"
 ccpuccin.cursor_bg = "#00ffff"
 
 config.font = wezterm.font("DankMono Nerd Font Mono", { weight = "Bold" })
-config.font_size = 16.0
+config.font_size = 19.0
 config.window_background_opacity = 0.85
 config.macos_window_background_blur = 30
 config.color_scheme = "Catppuccin Macchiato"
