@@ -1,43 +1,24 @@
 # dotfiles
 
-# Dotfiles
+Platform specific dotfile configurations by way of [chezmoi](https://chezmoi.io)
 
-## Requirements
+## Quickstart
+
+### :warning: Please be aware that running the command below will trigger a script which installs platform specific binaries. Be sure you have the appropriate permissions and proceed at your own risk. You can analyze this script in the `/bin` folder for the relevant operating systems.
+
+```sh
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply chrislcrain
+```
+
+## MacOS Requirements
 
 - `git`
 - `homebrew`
 - `chezmoi`
 - `zsh`
-<!-- - `curl` or `wget` (for [Zinit](https://github.com/zdharma-continuum/zinit)) -->
 
-## Initial Setup
+_The recommended terminal editor for this configuration is [WezTerm](https://wezterm.org/) but you may use your preferred editor as well. If you do choose to use another terminal please be aware that you will be responsible for setting up your own multiplexer keybinds and you will need to ignore the file at `/dot_config/wezterm`_
 
-Install Homebrew
+## Ubuntu Requirements
 
-```sh
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-
-Install chezmoi
-
-```sh
-brew install chezmoi
-```
-
-Clone repo files to chezmoi directory and sync files
-
-```sh
-chezmoi cd
-git init
-git remote add origin -t chezmoi-migration https://github.com/chrislcrain/dotfiles.git
-git pull
-chezmoi init
-chezmoi apply
-source ~/.config/shell/environment
-```
-
-Run bootstrap script
-
-```sh
-sh ~/bootstrap.sh
-```
+_Under Construction_
