@@ -49,6 +49,9 @@ if [ ! -f "$ZSH_CUSTOM/plugins/poetry/_poetry" ]; then
     poetry completions zsh > "$ZSH_CUSTOM/plugins/poetry/_poetry"
 fi
 
-chsh -s $(which zsh)
+if [ "$SHELL" != "$(which zsh)" ]; then
+    echo "Changing default shell to zsh. This will require elevation."
+    chsh -s $(which zsh)
+fi
 
 exec zsh
