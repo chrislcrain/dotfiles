@@ -14,8 +14,6 @@ opt.shiftwidth = 2 -- 2 spaces for indent width
 opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
 
-opt.wrap = false
-
 -- search settings
 opt.ignorecase = true -- ignore case when searching
 opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
@@ -46,6 +44,10 @@ opt.shell = "zsh"
 
 -- enable mouse support
 vim.o.mouse = "a"
+
+-- Wrap lines more easily
+opt.linebreak = true
+opt.wrap = false
 
 -- enable snacks input window
 -- vim.ui.input = require("snacks").input

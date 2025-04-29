@@ -31,3 +31,15 @@ map("n", "<Leader>cc", ":nohl<CR>", { noremap = true, silent = true })
 -- Indent text
 map("v", "<Tab>", ">gv", { noremap = true, silent = true })
 map("v", "<S-Tab>", "<gv", { noremap = true, silent = true })
+
+-- Smarter j/k for wrapped lines
+local function smart_jk(key)
+  return function()
+    return vim.v.count == 0 and "g" .. key or key
+  end
+end
+
+map("n", "j", smart_jk("j"), { expr = true, desc = "Down by display line" })
+map("n", "k", smart_jk("k"), { expr = true, desc = "Up by display line" })
+map("v", "j", smart_jk("j"), { expr = true })
+map("v", "k", smart_jk("k"), { expr = true })
