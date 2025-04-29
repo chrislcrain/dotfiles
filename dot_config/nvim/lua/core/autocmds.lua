@@ -46,6 +46,14 @@ vim.cmd([[autocmd BufRead,BufNewFile *_zshrc.tmpl set filetype=zsh]])
 vim.cmd([[let g:terraform_fmt_on_save=1]])
 vim.cmd([[let g:terraform_align=1]])
 
+-- Disable line wrapping for Terraform files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "terraform",
+  callback = function()
+    vim.opt_local.wrap = false
+  end,
+})
+
 local function augroup(name)
   return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
 end
@@ -142,6 +150,8 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     vim.opt_local.wrap = true
     vim.opt_local.spell = true
+    vim.opt_local.list = false
+    vim.opt_local.linebreak = true
   end,
 })
 

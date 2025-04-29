@@ -5,8 +5,24 @@ vim.cmd("let g:netrw_liststyle = 3")
 
 local opt = vim.opt
 
+-- Enable relative line numbers
 opt.relativenumber = true
 opt.number = true
+
+-- turn on termguicolors for tokyonight colorscheme to work
+-- (have to use iterm2 or any other true color terminal)
+opt.termguicolors = true
+
+-- Ensure cursorline is enabled
+vim.opt.cursorline = true
+
+-- Reapply highlight settings after colorscheme is loaded
+vim.api.nvim_create_autocmd("ColorScheme", {
+  callback = function()
+    vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#aaff00", bold = true })
+    vim.api.nvim_set_hl(0, "LineNr", { fg = "#888888" })
+  end,
+})
 
 -- tabs & indentation
 opt.tabstop = 2 -- 2 spaces for tabs (prettier default)
@@ -18,11 +34,7 @@ opt.autoindent = true -- copy indent from current line when starting new one
 opt.ignorecase = true -- ignore case when searching
 opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
 
-opt.cursorline = true
-
--- turn on termguicolors for tokyonight colorscheme to work
 -- (have to use iterm2 or any other true color terminal)
-opt.termguicolors = true
 opt.background = "dark" -- colorschemes that can be light or dark will be made dark
 opt.signcolumn = "yes" -- show sign column so that text doesn't shift
 
@@ -45,9 +57,9 @@ opt.shell = "zsh"
 -- enable mouse support
 vim.o.mouse = "a"
 
--- Wrap lines more easily
-opt.linebreak = true
-opt.wrap = false
+-- Better line wrap
+-- opt.wrap = true
+-- opt.list = false
 
 -- enable snacks input window
 -- vim.ui.input = require("snacks").input
