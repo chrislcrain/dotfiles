@@ -2,6 +2,8 @@
 # SHELL
 #######################################################
 
+export SHELL=$(which zsh)
+
 {{- if eq .chezmoi.os "darwin" -}}
 eval $(/opt/homebrew/bin/brew shellenv)
 {{ end }}
