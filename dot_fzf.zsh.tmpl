@@ -1,0 +1,19 @@
+# Setup fzf
+# ---------
+# Define the path as a variable
+{{- if eq .chezmoi.os "darwin" -}}
+FZF_PATH="/opt/homebrew/opt/fzf/bin"
+{{- else if eq .chezmoi.os "linux" -}}
+FZF_PATH="/usr/bin"
+{{ end }}
+
+# Check if the path is already in $PATH
+if [[ ! "$PATH" == *${FZF_PATH}* ]]; then
+  PATH="${PATH:+${PATH}:}${FZF_PATH}"
+fi
+
+# Auto-completion
+source "/opt/homebrew/opt/fzf/shell/completion.zsh"
+
+# Key bindings
+source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"

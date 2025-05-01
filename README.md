@@ -7,7 +7,7 @@ Platform specific dotfile configurations by way of [chezmoi](https://chezmoi.io)
 ### :warning: Please be aware that running the command below will trigger a script which installs platform specific binaries. Be sure you have the appropriate permissions and proceed at your own risk. You can analyze this script in the `/bin` folder for the relevant operating systems.
 
 ```sh
-sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply chrislcrain
+sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init --apply chrislcrain
 ```
 
 ## MacOS Requirements

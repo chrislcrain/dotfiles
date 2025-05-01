@@ -30,18 +30,19 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-export PATH="$PATH:/opt/nvim-linux64/bin:/Applications/WezTerm.app/Contents/MacOS"
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 export CODER_SSH_FORWARD_AGENT=TRUE
 
 source $XDG_CONFIG_HOME/ohmyzsh/.zsh_custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+{{ if eq .chezmoi.os "darwin" }}
 # Apply MacOS configs
-if [[ "$(uname)" == "Darwin" ]]; then
-    # Point SSH agent to 1Password
-    export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
-    export PATH="$PATH:/Library/PostgreSQL/17/bin"
-    export PATH="$PATH:$HOME/.config/lua/lua-5.1/src"
-fi
+# Point SSH agent to 1Password
+export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+export PATH="$PATH:/Library/PostgreSQL/17/bin"
+export PATH="$PATH:$HOME/.config/lua/lua-5.1/src"
+export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
+{{ end }}
 
 # direnv hook into shell (not necessary because it is a core plugin)
 eval "$(direnv hook zsh)"
