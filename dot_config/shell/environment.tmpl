@@ -28,6 +28,7 @@ export DOTNET_ROOT="$HOME/dotnet"
 # Suppress direnv output
 export DIRENV_LOG_FORMAT=""
 
-{{ if .chezmoi.username }}
+{{ if ne .chezmoi.username "coder" }}
 # 1Password SSH key integration
 export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+{{ end }}
