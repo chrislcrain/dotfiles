@@ -87,6 +87,6 @@ if [ ! -f "$ZSH_CUSTOM/plugins/poetry/_poetry" ]; then
     poetry completions zsh > "$ZSH_CUSTOM/plugins/poetry/_poetry"
 fi
 
-sudo chsh -s $(which zsh)
+sudo chsh "$(id -un)" --shell "/usr/bin/zsh"
 
 exec zsh

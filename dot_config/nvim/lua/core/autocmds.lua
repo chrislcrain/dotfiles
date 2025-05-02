@@ -38,6 +38,7 @@ vim.cmd([[autocmd BufRead,BufNewFile *.tf,*.tfvars set filetype=terraform]])
 vim.cmd([[autocmd BufRead,BufNewFile *.tfstate,*.tfstate.backup set filetype=json]])
 
 -- Recignize template files
+vim.cmd([[autocmd BufRead,BufNewFile *.zsh.tmpl set filetype=zsh]])
 vim.cmd([[autocmd BufRead,BufNewFile *.sh.tmpl set filetype=sh]])
 vim.cmd([[autocmd BufRead,BufNewFile *.toml.tmpl set filetype=toml]])
 vim.cmd([[autocmd BufRead,BufNewFile *_zshrc.tmpl set filetype=zsh]])
