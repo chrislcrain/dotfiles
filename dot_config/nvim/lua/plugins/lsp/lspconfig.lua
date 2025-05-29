@@ -84,9 +84,30 @@ return {
         },
       }),
       lspconfig["powershell_es"].setup({
+        -- CORRECT bundle_path with explicit Start-EditorServices.ps1 reference
         bundle_path = vim.fn.stdpath("data") .. "/mason/packages/powershell-editor-services",
-        on_attach = on_attach,
         shell = "pwsh",
+
+        -- REQUIRED cmd definition
+        cmd = {
+          "pwsh",
+          "-NoLogo",
+          "-NoProfile",
+          "-Command",
+          [[& ]]
+            .. vim.fn.stdpath("data")
+            .. "/mason/packages/powershell-editor-services/PowerShellEditorServices/Start-EditorServices.ps1",
+          "-BundledModulesPath",
+          vim.fn.stdpath("data") .. "/mason/packages/powershell-editor-services",
+          "-Stdio",
+          "-LogLevel",
+          "Normal",
+        },
+
+        -- CRITICAL profile loading fix
+        init_options = {
+          enableProfileLoading = false,
+        },
       }),
       lspconfig["lua_ls"].setup({
         capabilities = capabilities,

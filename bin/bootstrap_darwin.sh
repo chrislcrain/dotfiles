@@ -54,4 +54,12 @@ if [ "$SHELL" != "$(which zsh)" ]; then
     chsh -s $(which zsh)
 fi
 
+# Install coder
+if ! command -v coder &> /dev/null; then
+    echo "Installing coder..."
+    curl -L https://coder.com/install.sh | sh
+else
+    echo "Coder is already installed."
+fi
+
 exec zsh
