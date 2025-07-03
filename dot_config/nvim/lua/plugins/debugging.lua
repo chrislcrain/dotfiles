@@ -24,8 +24,10 @@ return {
     else
       vim.notify("PowerShell Editor Services (powershell_es) is not installed.", vim.log.levels.WARN)
     end
-    local adapter_python_path = require("mason-registry").get_package("debugpy"):get_install_path()
-      .. "/venv/bin/python"
+
+    -- vim.print(vim.inspect(debugpy_pkg))
+    -- local install_path = debugpy_pkg:get_install_path()
+    local adapter_python_path = vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python"
 
     local dap = require("dap")
     local dapui = require("dapui")
