@@ -1,4 +1,6 @@
-{{- if eq .chezmoi.os "darwin" -}}
+{{- if eq .chezmoi.username "coder" -}}
+{{-   include "bin/bootstrap_coder.sh" -}}
+{{- else if eq .chezmoi.os "darwin" -}}
 {{-   include "bin/bootstrap_darwin.sh" -}}
 {{- else if eq .chezmoi.os "linux" -}}
 {{-   include "bin/bootstrap_ubuntu.sh" -}}
