@@ -36,7 +36,7 @@ sudo apt install -y direnv fzf gh git pipx ripgrep wget luarocks
 
 # fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
+~/.fzf/install --all
 
 # Install chezmoi (user-local)
 sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "$HOME/.local/bin"
