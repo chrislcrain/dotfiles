@@ -1,2 +1,3 @@
+{{- $noreplyEmail := promptStringOnce . "noreplyEmail" "Enter the noreply email address" -}}
 [data]
-noreplyEmail = {{ (or .noreplyEmail (promptStringOnce . "noreplyEmail" "What is your Github noreply email address")) | quote }}
+noreplyEmail = {{ $noreplyEmail | quote }}
