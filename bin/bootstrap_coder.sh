@@ -95,7 +95,7 @@ fi
 # Change shell to zsh (if available locally, otherwise skip)
 # You cannot chsh to a user-local zsh, so skip this in ephemeral environments
 
-nvim --headless "+Lazy! sync" +qa
+/opt/nvim-linux-x86_64/bin/nvim --headless "+Lazy! sync" +qa
 
 exec zsh
 
