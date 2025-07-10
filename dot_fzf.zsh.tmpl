@@ -1,7 +1,9 @@
 # Setup fzf
 # ---------
 # Define the path as a variable
-{{ if eq .chezmoi.os "darwin" }}
+{{ if eq .chezmoi.username "coder" }}
+FZF_PATH="$HOME/.fzf/bin"
+{{ else if eq .chezmoi.os "darwin" }}
 FZF_PATH="/opt/homebrew/opt/fzf/bin"
 {{ else if eq .chezmoi.os "linux" }}
 FZF_PATH="/usr/bin"
@@ -13,11 +15,30 @@ if [[ ! "$PATH" == *${FZF_PATH}* ]]; then
 fi
 
 
+{{ if eq .chezmoi.username "coder" }}
+FZF_SHELL_DIR="$HOME/.fzf/shell"
+COMPLETION_URL="https://raw.githubusercontent.com/junegunn/fzf/master/shell/completion.zsh"
+KEY_BINDINGS_URL="https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh"
+# Ensure the /usr/share/fzf/shell directory exists
+if [ ! -d "$FZF_SHELL_DIR" ]; then
+  echo "Directory $FZF_SHELL_DIR does not exist. Creating it..."
+  sudo mkdir -p "$FZF_SHELL_DIR"
+fi
 
-{{ if eq .chezmoi.os "darwin" }}
+# Download the completion.zsh script if it doesn't exist
+if [ ! -f "$FZF_SHELL_DIR/completion.zsh" ]; then
+  echo "completion.zsh not found. Downloading..."
+  sudo curl -fsSL "$COMPLETION_URL" -o "$FZF_SHELL_DIR/completion.zsh"
+fi
+
+# Download the key-bindings.zsh script if it doesn't exist
+if [ ! -f "$FZF_SHELL_DIR/key-bindings.zsh" ]; then
+  echo "key-bindings.zsh not found. Downloading..."
+  sudo curl -fsSL "$KEY_BINDINGS_URL" -o "$FZF_SHELL_DIR/key-bindings.zsh"
+fi
+{{ else if eq .chezmoi.os "darwin" }}
 # Auto-completion
 source "/opt/homebrew/opt/fzf/shell/completion.zsh"
-
 # Key bindings
 source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
 {{ else if eq .chezmoi.os "linux" }}
