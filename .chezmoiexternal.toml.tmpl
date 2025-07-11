@@ -38,13 +38,13 @@
     exact = true
     refreshPeriod = "168h"
 {{ else if eq .chezmoi.os "linux" }}
-["/usr/share/fzf/shell"]
+["/usr/share/fzf/shell/completion.zsh"]
     type = "file"
     url = "https://raw.githubusercontent.com/junegunn/fzf/master/shell/completion.zsh"
     executable = true
     exact = true
     refreshPeriod = "168h"
-["/usr/share/fzf/shell"]
+["/usr/share/fzf/shell/key-bindings.zsh"]
     type = "file"
     url = "https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh"
     executable = true
