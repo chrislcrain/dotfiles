@@ -24,3 +24,30 @@
     url = "https://github.com/romkatv/powerlevel10k.git"
     exact = true
     refreshPeriod = "168h"
+{{ if eq .chezmoi.username "coder" }}
+["/home/coder/.fzf/shell"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/junegunn/fzf/master/shell/completion.zsh"
+    executable = true
+    exact = true
+    refreshPeriod = "168h"
+["/home/coder/.fzf/shell"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh"
+    executable = true
+    exact = true
+    refreshPeriod = "168h"
+{{ else if eq .chezmoi.os "linux" }}
+["/usr/share/fzf/shell"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/junegunn/fzf/master/shell/completion.zsh"
+    executable = true
+    exact = true
+    refreshPeriod = "168h"
+["/usr/share/fzf/shell"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh"
+    executable = true
+    exact = true
+    refreshPeriod = "168h"
+{{ end }}
