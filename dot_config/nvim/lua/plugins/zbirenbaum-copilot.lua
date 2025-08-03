@@ -1,4 +1,6 @@
 return {
+  enabled = true,
+  lazy = true,
   "zbirenbaum/copilot.lua",
   ft = { "lua", "python", "powershell", "terraform", "sh", "bash", "zsh", "fish", "ksh", "csh", "tcsh" },
   config = function()

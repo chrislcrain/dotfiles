@@ -1,5 +1,3 @@
-# local signs = require("utils").signs
-
 return {
   "mason-org/mason.nvim",
   build = ":MasonUpdate",
@@ -13,9 +11,9 @@ return {
   opts = {
     ui = {
       icons = {
-          package_installed = "✓",
-          package_pending = "➜",
-          package_uninstalled = "✗",
+        package_installed = "✓",
+        package_pending = "➜",
+        package_uninstalled = "✗",
       },
     },
   },

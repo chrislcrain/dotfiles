@@ -29,6 +29,14 @@ vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
   command = "set filetype=javascript",
 })
 
+vim.api.nvim_create_autocmd({ "BufEnter", "BufRead" }, {
+  callback = function()
+    if vim.bo.filetype == "" or vim.bo.filetype == "conf" then -- adjust if your default is something else
+      vim.cmd("filetype detect")
+    end
+  end,
+})
+
 vim.cmd([[silent! autocmd! filetypedetect BufRead,BufNewFile *.tf]])
 
 -- Recognize TF files

@@ -7,6 +7,7 @@ fi
 DISABLE_AUTO_UPDATE="true"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 export EDITOR="nvim"
+export KEYTIMEOUT=10
 
 plugins=(
   git
@@ -23,7 +24,9 @@ source $ZSH/oh-my-zsh.sh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Setup fuzzyfinder
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_SHELL_PATH="$HOME/.fzf/shell"
+source "$FZF_SHELL_PATH/completion.zsh"
+source "$FZF_SHELL_PATH/key-bindings.zsh"
 
 # Setup  pyenv
 if command -v pyenv 1>/dev/null 2>&1; then
