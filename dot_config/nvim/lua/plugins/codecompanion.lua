@@ -4,10 +4,10 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
-    -- "echasnovski/mini.diff",
+    "echasnovski/mini.diff",
   },
   config = function()
-    vim.keymap.set("n", "<leader>ch", "<cmd>CodeCompanionChat Toggle<CR>", opts) -- toggle chat
+    vim.keymap.set("n", "<leader>ch", "<cmd>CodeCompanionChat Toggle<CR>") -- toggle chat
     require("codecompanion").setup({
       display = {
         chat = {
@@ -15,6 +15,9 @@ return {
           intro_message = "Beep boop! 🤖 Happy coding!",
           show_header_separator = false,
           separator = "=",
+          keymaps = {
+            choose_adapter = "<leader>ca",
+          },
         },
         diff = {
           enabled = true,
@@ -26,6 +29,7 @@ return {
       },
       strategies = {
         chat = {
+          default_context = { "file" },
           slash_commands = {
             ["file"] = {
               -- Location to the slash command in CodeCompanion
@@ -50,6 +54,6 @@ return {
       },
       inline = { adapter = "copilot" },
     })
-    vim.keymap.set("n", "<C-Space>", "<cmd>CodeCompanionChat Slash file<CR>", opts) -- multi-select files
+    vim.keymap.set("n", "<C-Space>", "<cmd>CodeCompanionChat Slash file<CR>") -- multi-select files
   end,
 }

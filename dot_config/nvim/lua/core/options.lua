@@ -58,7 +58,7 @@ opt.shell = "zsh"
 vim.o.mouse = "a"
 
 -- Better line wrap
--- opt.wrap = true
+opt.wrap = false
 -- opt.list = false
 
 -- enable snacks input window

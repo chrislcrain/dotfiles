@@ -16,32 +16,20 @@ return {
     automatic_installation = true,
   },
   config = function()
-    -- vim.diagnostic.config({
-    --   signs = {
-    --     text = {
-    --       [vim.diagnostic.severity.ERROR] = "",
-    --       [vim.diagnostic.severity.WARN] = "",
-    --       [vim.diagnostic.severity.HINT] = "⚑",
-    --       [vim.diagnostic.severity.INFO] = "",
-    --     },
-    --   },
-    -- })
-
     vim.diagnostic.config({
       signs = {
         text = {
-          [vim.diagnostic.severity.ERROR] = "",
+          [vim.diagnostic.severity.ERROR] = "",
           [vim.diagnostic.severity.WARN] = "",
-          [vim.diagnostic.severity.HINT] = "⚑",
-          [vim.diagnostic.severity.INFO] = "",
+          [vim.diagnostic.severity.INFO] = "",
+          [vim.diagnostic.severity.HINT] = "",
         },
       },
       virtual_text = {
-        prefix = "»", -- Or any icon/symbol you like
+        prefix = "»",
       },
       severity_sort = true,
-      -- signs = true, -- enables icon gutter
-      update_in_insert = false,
+      update_in_insert = true,
     })
   end,
 }
