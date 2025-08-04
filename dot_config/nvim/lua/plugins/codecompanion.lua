@@ -5,9 +5,15 @@ return {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
     "echasnovski/mini.diff",
+    "j-hui/fidget.nvim",
   },
   config = function()
     vim.keymap.set("n", "<leader>ch", "<cmd>CodeCompanionChat Toggle<CR>") -- toggle chat
+    require("fidget").setup({
+      progress = {
+        ignore = { "pylsp" },
+      },
+    })
     require("codecompanion").setup({
       display = {
         chat = {
@@ -54,6 +60,5 @@ return {
       },
       inline = { adapter = "copilot" },
     })
-    vim.keymap.set("n", "<C-Space>", "<cmd>CodeCompanionChat Slash file<CR>") -- multi-select files
   end,
 }
