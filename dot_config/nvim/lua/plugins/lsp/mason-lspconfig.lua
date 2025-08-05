@@ -9,27 +9,10 @@ return {
     ensure_installed = {
       "lua_ls",
       "powershell_es",
-      "ruff",
+      -- "ruff",
       "pylsp",
       "terraformls",
     },
     automatic_installation = true,
   },
-  -- config = function()
-  --   vim.diagnostic.config({
-  --     signs = {
-  --       text = {
-  --         [vim.diagnostic.severity.ERROR] = "",
-  --         [vim.diagnostic.severity.WARN] = "",
-  --         [vim.diagnostic.severity.INFO] = "",
-  --         [vim.diagnostic.severity.HINT] = "",
-  --       },
-  --     },
-  --     virtual_text = {
-  --       prefix = "»",
-  --     },
-  --     severity_sort = true,
-  --     update_in_insert = true,
-  --   })
-  -- end,
 }

@@ -4,7 +4,7 @@ return {
   config = function()
     local lint = require("lint")
     lint.linters_by_ft = {
-      python = { "ruff" },
+      -- python = { "ruff" },
       lua = { "luacheck" },
       terraform = { "tflint" },
     }
