@@ -65,3 +65,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# CodeCompanion workspace files
+codecompanion-workspace.json
