@@ -6,7 +6,7 @@ return {
     lint.linters_by_ft = {
       -- python = { "ruff" },
       lua = { "luacheck" },
-      terraform = { "tflint" },
+      -- terraform = { "tflint" },
     }
 
     vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
