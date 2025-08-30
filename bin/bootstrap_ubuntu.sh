@@ -76,6 +76,7 @@ pipx install debugpy
 
 # Add poetry and poetry configs to the system
 if ! command -v poetry &> /dev/null; then
+    pipx ensurepath
     pipx install poetry
 fi
 
