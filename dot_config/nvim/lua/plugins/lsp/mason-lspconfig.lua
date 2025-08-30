@@ -9,8 +9,8 @@ return {
     ensure_installed = {
       "lua_ls",
       "powershell_es",
-      -- "ruff",
-      "pylsp",
+      "ruff",
+      -- "pylsp",
       "terraformls",
     },
     automatic_installation = true,

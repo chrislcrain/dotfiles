@@ -19,16 +19,20 @@ return {
       keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
 
       opts.desc = "Go to declaration"
-      keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
+      keymap.set("n", "gd", vim.lsp.buf.declaration, opts) -- go to declaration
 
       opts.desc = "Show LSP definitions"
-      keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
+      keymap.set("n", "gD", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
 
       opts.desc = "Show documentation for what is under cursor"
       keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
 
       opts.desc = "Restart LSP"
       keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+
+      if client.name == "ruff" then
+        client.server_capabilities.hoverProvider = false
+      end
     end
 
     -- used to enable autocompletion (assign to every lsp server config)
@@ -69,19 +73,69 @@ return {
       capabilities = capabilities,
     })
 
-    -- pylsp with custom settings
-    vim.lsp.config("pylsp", {
-      on_attach = on_attach,
-      capabilities = capabilities,
+    -- Ruff LSP (handles linting, formatting, import organization)
+    vim.lsp.config("ruff", {
+      cmd = { "ruff", "server", "--preview" },
+      filetypes = { "python" },
+      init_options = {
+        settings = {
+          configuration = {
+            lint = {
+              select = { "E301", "E302", "E303", "E305" }, -- E3xx covers blank line rules
+              ignore = {
+                "ANN001",
+                "ANN002",
+                "ANN003",
+                -- "ANN101",
+                -- "ANN102",
+                "ANN201",
+                "T201",
+                "T203",
+              },
+            },
+          },
+        },
+      },
+    })
+
+    -- Pyright/Basedpyright (handles type checking, hover, completions)
+    vim.lsp.config("basedpyright", {
+      cmd = { "basedpyright-langserver", "--stdio" },
+      filetypes = { "python" },
       settings = {
-        pylsp = {
-          plugins = {
-            ruff = { enabled = true },
-            mccabe = { enabled = false },
-            pyflakes = { enabled = false },
-            pycodestyle = {
-              enabled = true,
-              ignore = { "E501" },
+        basedpyright = {
+          -- Disable import organization (let Ruff handle this)
+          disableOrganizeImports = true,
+
+          analysis = {
+            -- Core type checking settings
+            typeCheckingMode = "standard", -- or "basic", "strict"
+            autoSearchPaths = true,
+            useLibraryCodeForTypes = true,
+
+            -- Disable overlapping diagnostics that Ruff handles better
+            diagnosticSeverityOverrides = {
+              -- Import/usage issues (let Ruff handle these)
+              reportUnusedImport = "none",
+              reportUnusedVariable = "none",
+              reportUnusedFunction = "none",
+              reportUnusedClass = "none",
+              reportUnusedCoroutine = "none",
+              reportUnusedExpression = "none",
+
+              -- Code style issues (let Ruff handle these)
+              reportUndefinedVariable = "none",
+              reportDuplicateImport = "none",
+              reportWildcardImportFromLibrary = "none",
+
+              -- Keep type-checking related diagnostics
+              reportGeneralTypeIssues = "error",
+              reportOptionalSubscript = "error",
+              reportOptionalMemberAccess = "error",
+              reportOptionalCall = "error",
+              reportOptionalIterable = "error",
+              reportOptionalContextManager = "error",
+              reportOptionalOperand = "error",
             },
           },
         },
@@ -123,5 +177,7 @@ return {
       bundle_path = vim.fn.stdpath("data") .. "/mason/packages/powershell-editor-services",
       shell = "pwsh",
     })
+
+    vim.lsp.set_log_level("error") -- Set log level to "error" to reduce verbosity
   end,
 }

@@ -18,7 +18,7 @@ return {
         graphql = { "prettier", stop_after_first = true },
         liquid = { "prettier", stop_after_first = true },
         lua = { "stylua", stop_after_first = true },
-        python = { "black", stop_after_first = true },
+        python = { "ruff", stop_after_first = true },
       },
       format_on_save = {
         lsp_fallback = true,

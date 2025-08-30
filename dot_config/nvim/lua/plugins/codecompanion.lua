@@ -11,7 +11,7 @@ return {
     vim.keymap.set("n", "<leader>ch", "<cmd>CodeCompanionChat Toggle<CR>") -- toggle chat
     require("fidget").setup({
       progress = {
-        ignore = { "pylsp" },
+        ignore = { "basedpyright" },
       },
     })
     require("codecompanion").setup({
