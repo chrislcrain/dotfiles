@@ -88,6 +88,8 @@ if [ ! -f "$ZSH_CUSTOM/plugins/poetry/_poetry" ]; then
     poetry completions zsh > "$ZSH_CUSTOM/plugins/poetry/_poetry"
 fi
 
+/opt/nvim-linux-x86_64/bin/nvim --headless "+Lazy! sync" +qa
+
 sudo chsh "$(id -un)" --shell "/usr/bin/zsh"
 
 exec zsh
