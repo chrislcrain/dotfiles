@@ -72,7 +72,11 @@ return {
         },
         lualine_c = { "filename" },
         lualine_x = { "copilot", "encoding", "fileformat", "filetype" },
-        lualine_y = { "progress" },
+        lualine_y = {
+          function()
+            return vim.loop.os_gethostname()
+          end,
+        },
         lualine_z = { "location" },
       },
       inactive_sections = {

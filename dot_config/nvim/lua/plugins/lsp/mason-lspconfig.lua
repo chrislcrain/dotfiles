@@ -10,7 +10,6 @@ return {
       "lua_ls",
       "powershell_es",
       "ruff",
-      -- "pylsp",
       "terraformls",
     },
     automatic_installation = true,
