@@ -10,6 +10,7 @@ return {
       "prettier",
       "stylua",
       "tflint",
+      "lua_ls",
     },
     run_on_start = true,
     automatic_installation = true,

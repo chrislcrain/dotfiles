@@ -10,8 +10,8 @@ alias ll='ls -al --color=auto'
 # Instaconfig nvim
 alias nvim-config='chezmoi edit --apply ~/.config/nvim'
 
-# nvim directly into ~/.config
-alias config='nvim ~/.config'
+# nvim directly into ~/.config/nvim
+alias nvc='nvim ~/.config/nvim'
 
 # Better grep - with color
 alias grep='grep --color=auto'
