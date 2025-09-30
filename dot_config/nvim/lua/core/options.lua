@@ -64,4 +64,16 @@ opt.wrap = false
 -- enable snacks input window
 -- vim.ui.input = require("snacks").input
 
-vim.g.clipboard = require("vim.ui.clipboard.osc52").tool
+vim.g.clipboard = {
+  name = "OSC 52",
+  copy = {
+    ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+    ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+  },
+  paste = {
+    ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+    ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+  },
+}
+
+vim.opt.clipboard:append({ "unnamedplus", "unnamed" })
