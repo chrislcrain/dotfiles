@@ -63,3 +63,5 @@ opt.wrap = false
 
 -- enable snacks input window
 -- vim.ui.input = require("snacks").input
+
+vim.g.clipboard = require("vim.ui.clipboard.osc52").tool
