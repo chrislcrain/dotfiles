@@ -31,11 +31,7 @@ sudo rm -rf /opt/nvim
 sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
 
 # Install core utilities
-sudo apt install -y direnv fzf gh git pipx ripgrep wget luarocks
-
-# fzf
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install --all
+sudo apt install -y direnv gh git pipx ripgrep wget luarocks
 
 # Install chezmoi (user-local)
 sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "$HOME/.local/bin"
@@ -97,8 +93,14 @@ fi
 
 /opt/nvim-linux-x86_64/bin/nvim --headless "+Lazy! sync" +qa
 
+# Install and autoconfig fzf
+if [ -d ~/.config/fzf ]; then
+  ~/.config/fzf/install --no-update-rc --xdg --completions --key-bindings
+else
+    echo "fzf is missing!"
+fi
+
 exec zsh
 
 # Use this to clean homedir
-# rm -rf .azure bin .cache .config .local nvim-linux-x86_64.tar.gz .pyenv .vim .viminfo .wget-hsts .zcompdump .zshrc .fzf*
-
+rm -rf nvim-linux-x86_64.tar.gz

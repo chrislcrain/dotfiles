@@ -24,15 +24,7 @@
     url = "https://github.com/romkatv/powerlevel10k.git"
     exact = true
     refreshPeriod = "168h"
-[".fzf/shell/completion.zsh"]
-    type = "file"
-    url = "https://raw.githubusercontent.com/junegunn/fzf/master/shell/completion.zsh"
-    executable = true
+[".config/fzf"]
+    type = "git-repo"
+    url = "https://github.com/junegunn/fzf.git"
     exact = true
-    refreshPeriod = "168h"
-[".fzf/shell/key-bindings.zsh"]
-    type = "file"
-    url = "https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh"
-    executable = true
-    exact = true
-    refreshPeriod = "168h"
