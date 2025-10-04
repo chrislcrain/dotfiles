@@ -8,10 +8,7 @@ return {
   opts = {
     ensure_installed = {
       "lua_ls",
-      "powershell_es",
-      "ruff",
       "terraformls",
-      "basedpyright",
     },
     automatic_installation = true,
   },
