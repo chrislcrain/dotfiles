@@ -8,7 +8,6 @@ return {
   opts = {
     ensure_installed = {
       "lua_ls",
-      "terraformls",
     },
     automatic_installation = true,
   },

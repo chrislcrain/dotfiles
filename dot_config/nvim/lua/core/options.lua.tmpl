@@ -64,6 +64,7 @@ opt.wrap = false
 -- enable snacks input window
 -- vim.ui.input = require("snacks").input
 
+{{- if eq .chezmoi.username "coder" -}}
 vim.g.clipboard = {
   name = "OSC 52",
   copy = {
@@ -75,5 +76,6 @@ vim.g.clipboard = {
     ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
   },
 }
+{{ end }}
 
 vim.opt.clipboard:append({ "unnamedplus", "unnamed" })
