@@ -54,6 +54,9 @@ if [ "$SHELL" != "$(which zsh)" ]; then
     chsh -s $(which zsh)
 fi
 
+# Install fzf
+./$XDG_CONFIG_HOME/fzf/install --xdg --key-bindings --completion --no-update-rc
+
 # Install coder
 if ! command -v coder &> /dev/null; then
     echo "Installing coder..."
