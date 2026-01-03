@@ -55,7 +55,7 @@ if [ "$SHELL" != "$(which zsh)" ]; then
 fi
 
 # Install fzf
-./$XDG_CONFIG_HOME/fzf/install --xdg --key-bindings --completion --no-update-rc
+$XDG_CONFIG_HOME/fzf/install --xdg --key-bindings --completion --no-update-rc
 
 # Install coder
 if ! command -v coder &> /dev/null; then
@@ -67,6 +67,8 @@ fi
 
 # Run Neovim first time configs and add to PATH
 $HOME/.local/nvim/bin/nvim --headless "+Lazy! sync" +qa
-ln -s "$HOME/.local/nvim/bin/nvim" "$HOME/.local/bin/nvim"
+if [ ! -e "$HOME/.local/bin/nvim" ]; then
+    ln -s "$HOME/.local/nvim/bin/nvim" "$HOME/.local/bin/nvim"
+fi
 
 exec zsh

@@ -2,7 +2,7 @@
 
 # Set environment variables for user-local installations
 export PATH="$HOME/.local/bin:$PATH"
-export ZSH_CUSTOM="$HOME/.config/ohmyzsh/.zsh_custom"
+export ZSH_CUSTOM="$XDG_CONFIG_HOME/ohmyzsh/.zsh_custom"
 
 cd $HOME
 
@@ -48,9 +48,6 @@ for tool in terraform packer; do
   rm "$HOME/.local/bin/$tool.zip"
 done
 
-# Install fzf
-$XDG_CONFIG_HOME/fzf/install --xdg --key-bindings --completion --no-update-rc
-
 # Install Node.js (user-local, via n or nvm)
 curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o "$HOME/.local/bin/n"
 chmod +x "$HOME/.local/bin/n"
@@ -81,8 +78,8 @@ if [ ! -f "$ZSH_CUSTOM/plugins/poetry/_poetry" ]; then
 fi
 
 # Install and autoconfig fzf
-if [ -d $HOME/.config/fzf ]; then
-  $HOME/.config/fzf/install --no-update-rc --xdg --completions --key-bindings
+if [ -d $XDG_CONFIG_HOME/fzf ]; then
+  $XDG_CONFIG_HOME/fzf/install --no-update-rc --xdg --completion --key-bindings
 else
     echo "fzf is missing!"
 fi
@@ -90,10 +87,14 @@ fi
 # Install treesitter cli
 gunzip -d "$HOME/.local/tree-sitter-cli/tree-sitter-linux-x64.gz"
 chmod +x "$HOME/.local/tree-sitter-cli/tree-sitter-linux-x64"
-ln -s "$HOME/.local/tree-sitter-cli/tree-sitter-linux-x64" "$HOME/.local/bin/tree-sitter"
+if [ ! -e "$HOME/.local/bin/tree-sitter" ]; then
+    ln -s "$HOME/.local/tree-sitter-cli/tree-sitter-linux-x64" "$HOME/.local/bin/tree-sitter"
+fi
 
 # Run Neovim first time configs and add to PATH
 $HOME/.local/nvim/bin/nvim --headless "+Lazy! sync" +qa
-ln -s "$HOME/.local/nvim/bin/nvim" "$HOME/.local/bin/nvim"
+if [ ! -e "$HOME/.local/bin/nvim" ]; then
+    ln -s "$HOME/.local/nvim/bin/nvim" "$HOME/.local/bin/nvim"
+fi
 
 exec zsh
