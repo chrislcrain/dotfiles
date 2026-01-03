@@ -49,7 +49,7 @@ for tool in terraform packer; do
 done
 
 # Install fzf
-./$XDG_CONFIG_HOME/fzf/install --xdg --key-bindings --completion --no-update-rc
+$XDG_CONFIG_HOME/fzf/install --xdg --key-bindings --completion --no-update-rc
 
 # Install Node.js (user-local, via n or nvm)
 curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o "$HOME/.local/bin/n"
@@ -87,6 +87,6 @@ else
     echo "fzf is missing!"
 fi
 
-/opt/nvim-linux-x86_64/bin/nvim --headless "+Lazy! sync" +qa
+$HOME/.local/nvim/bin/nvim --headless "+Lazy! sync" +qa
 
 exec zsh

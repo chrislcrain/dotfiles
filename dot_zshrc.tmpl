@@ -39,14 +39,13 @@ export CODER_SSH_FORWARD_AGENT=TRUE
 source $XDG_CONFIG_HOME/ohmyzsh/.zsh_custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 {{ if eq .chezmoi.os "darwin" -}}
-# Apply MacOS configs
-# Point SSH agent to 1Password
 export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
 export PATH="$PATH:/Library/PostgreSQL/17/bin"
 export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
 export PATH="$PATH:$HOME/.config/lua/lua-5.1/src"
 export PATH="$PATH:$HOME/.local/share/nvim/mason/bin"
 {{- end -}}
+export PATH="$PATH:$HOME/.local/nvim/bin/nvim"
 
 # direnv hook into shell (not necessary because it is a core plugin)
 eval "$(direnv hook zsh)"

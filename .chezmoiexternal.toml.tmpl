@@ -28,9 +28,13 @@
     type = "git-repo"
     url = "https://github.com/junegunn/fzf.git"
     exact = true
-["/.local/nvim-linux-x86_64"]
+[".local/nvim"]
     type = "archive"
+{{- if eq .chezmoi.os "darwin" }}
+    url = "https://github.com/neovim/neovim/releases/download/v0.11.5/nvim-macos-arm64.tar.gz"
+{{- else if eq .chezmoi.os "linux" }}
     url = "https://github.com/neovim/neovim/releases/download/v0.11.5/nvim-linux-x86_64.tar.gz"
+{{- end }}
     exact = true
     stripComponents = 1
     refreshPeriod = "168h"
