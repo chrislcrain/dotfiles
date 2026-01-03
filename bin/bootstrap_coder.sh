@@ -25,11 +25,6 @@ fi
 # Install Azure CLI (pipx user install)
 pipx install azure-cli
 
-# Install Neovim (user-local)
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
-sudo rm -rf /opt/nvim
-sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
-
 # Install core utilities
 sudo apt install -y direnv gh git pipx ripgrep wget luarocks
 
@@ -53,11 +48,8 @@ for tool in terraform packer; do
   rm "$HOME/.local/bin/$tool.zip"
 done
 
-# Install 1Password CLI (user-local)
-OP_VERSION="2.29.0"
-curl -Lo "$HOME/.local/bin/op" "https://cache.agilebits.com/dist/1P/op2/pkg/v${OP_VERSION}/op_linux_amd64_v${OP_VERSION}.zip"
-unzip -o "$HOME/.local/bin/op" -d "$HOME/.local/bin/"
-chmod +x "$HOME/.local/bin/op"
+# Install fzf
+./$XDG_CONFIG_HOME/fzf/install --xdg --key-bindings --completion --no-update-rc
 
 # Install Node.js (user-local, via n or nvm)
 curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o "$HOME/.local/bin/n"
@@ -88,11 +80,6 @@ if [ ! -f "$ZSH_CUSTOM/plugins/poetry/_poetry" ]; then
     poetry completions zsh > "$ZSH_CUSTOM/plugins/poetry/_poetry"
 fi
 
-# Change shell to zsh (if available locally, otherwise skip)
-# You cannot chsh to a user-local zsh, so skip this in ephemeral environments
-
-/opt/nvim-linux-x86_64/bin/nvim --headless "+Lazy! sync" +qa
-
 # Install and autoconfig fzf
 if [ -d ~/.config/fzf ]; then
   ~/.config/fzf/install --no-update-rc --xdg --completions --key-bindings
@@ -100,7 +87,6 @@ else
     echo "fzf is missing!"
 fi
 
-exec zsh
+/opt/nvim-linux-x86_64/bin/nvim --headless "+Lazy! sync" +qa
 
-# Use this to clean homedir
-rm -rf nvim-linux-x86_64.tar.gz
+exec zsh

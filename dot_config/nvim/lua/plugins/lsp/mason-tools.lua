@@ -13,6 +13,7 @@ return {
       "lua_ls",
       "powershell_es",
       "ruff",
+      "terraformls",
     },
     run_on_start = true,
     automatic_installation = true,
