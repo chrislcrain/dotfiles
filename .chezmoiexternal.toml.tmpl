@@ -37,4 +37,13 @@
 {{- end }}
     exact = true
     stripComponents = 1
-    refreshPeriod = "168h"
+{{- if eq .chezmoi.os "darwin" }}
+[".local/tree-sitter-cli/tree-sitter-macos-arm64.gz"]
+    url = "https://github.com/tree-sitter/tree-sitter/releases/download/v0.26.3/tree-sitter-macos-arm64.gz"
+{{- else if eq .chezmoi.os "linux" }}
+[".local/tree-sitter-cli/tree-sitter-linux-x64.gz"]
+    url = "https://github.com/tree-sitter/tree-sitter/releases/download/v0.26.3/tree-sitter-linux-x64.gz"
+{{- end }}
+    type = "file"
+    exact = true
+    stripComponents = 1

@@ -4,7 +4,7 @@
 export PATH="$HOME/.local/bin:$PATH"
 export ZSH_CUSTOM="$HOME/.config/ohmyzsh/.zsh_custom"
 
-cd ~
+cd $HOME
 
 # Ensure local bin exists
 mkdir -p "$HOME/.local/bin"
@@ -15,7 +15,7 @@ sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
   libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
   xz-utils tk-dev libffi-dev liblzma-dev python3-openssl git zsh
 
-# Install pyenv (installs to ~/.pyenv)
+# Install pyenv (installs to $HOME/pyenv)
 if [ ! -d "$HOME/.pyenv" ]; then
     curl https://pyenv.run | bash
     export PATH="$HOME/.pyenv/bin:$PATH"
@@ -61,8 +61,8 @@ export N_PREFIX="$HOME/.local"
 rm -f packages-microsoft-prod.deb
 
 # Set up .vim and undodir
-mkdir -p ~/.vim/undodir
-chmod 777 ~/.vim ~/.vim/undodir
+mkdir -p $HOME/vim/undodir
+chmod 777 $HOME/vim $HOME/vim/undodir
 
 # Install debugpy (pipx user-local)
 pipx install debugpy
@@ -81,12 +81,19 @@ if [ ! -f "$ZSH_CUSTOM/plugins/poetry/_poetry" ]; then
 fi
 
 # Install and autoconfig fzf
-if [ -d ~/.config/fzf ]; then
-  ~/.config/fzf/install --no-update-rc --xdg --completions --key-bindings
+if [ -d $HOME/.config/fzf ]; then
+  $HOME/.config/fzf/install --no-update-rc --xdg --completions --key-bindings
 else
     echo "fzf is missing!"
 fi
 
+# Install treesitter cli
+gunzip -d "$HOME/.local/tree-sitter-cli/tree-sitter-linux-x64.gz"
+chmod +x "$HOME/.local/tree-sitter-cli/tree-sitter-linux-x64"
+ln -s "$HOME/.local/tree-sitter-cli/tree-sitter-linux-x64" "$HOME/.local/bin/tree-sitter"
+
+# Run Neovim first time configs and add to PATH
 $HOME/.local/nvim/bin/nvim --headless "+Lazy! sync" +qa
+ln -s "$HOME/.local/nvim/bin/nvim" "$HOME/.local/bin/nvim"
 
 exec zsh
