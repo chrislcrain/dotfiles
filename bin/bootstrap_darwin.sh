@@ -65,4 +65,8 @@ else
     echo "Coder is already installed."
 fi
 
+# Run Neovim first time configs and add to PATH
+$HOME/.local/nvim/bin/nvim --headless "+Lazy! sync" +qa
+ln -s "$HOME/.local/nvim/bin/nvim" "$HOME/.local/bin/nvim"
+
 exec zsh
