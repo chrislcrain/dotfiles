@@ -2,8 +2,10 @@ return {
   "rcarriga/nvim-notify",
   enabled = true,
   config = function()
-    vim.notify = require("notify").setup({
+    local notify = require("notify")
+    notify.setup({
       background_colour = "#000000",
     })
+    vim.notify = notify
   end,
 }
