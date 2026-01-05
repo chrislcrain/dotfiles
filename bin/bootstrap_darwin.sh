@@ -54,8 +54,13 @@ if [ "$SHELL" != "$(which zsh)" ]; then
     chsh -s $(which zsh)
 fi
 
-# Install fzf
-$XDG_CONFIG_HOME/fzf/install --xdg --key-bindings --completion --no-update-rc
+# Install and autoconfig fzf
+if [ -d $XDG_CONFIG_HOME/fzf ]; then
+  $XDG_CONFIG_HOME/fzf/install --no-update-rc --xdg --completion --key-bindings
+  ln -s "$XDG_CONFIG_HOME/fzf/bin/fzf" "$HOME/.local/bin/fzf"
+else
+    echo "fzf is missing!"
+fi
 
 # Install coder
 if ! command -v coder &> /dev/null; then
