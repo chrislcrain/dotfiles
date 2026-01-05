@@ -34,19 +34,15 @@ return {
       "powershell",
     }
 
-    require("nvim-treesitter.configs").setup({
-      ensure_installed = ts_langs,
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false,
-      },
-      indent = {
-        enable = true,
-      },
-      autotag = {
-        enable = true,
-      },
-    })
+    local treesitter = require("nvim-treesitter")
+
+    for _, lang in ipairs(ts_langs) do
+      local ok = pcall(vim.treesitter.language.inspect, lang)
+      if not ok then
+        -- Parser not available; install just this one.
+        treesitter.install({ lang })
+      end
+    end
 
     -- require("nvim-treesitter").install(ts_langs, {
     --   summary = false,
