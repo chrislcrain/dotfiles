@@ -37,7 +37,7 @@ return {
     local treesitter = require("nvim-treesitter")
 
     for _, lang in ipairs(ts_langs) do
-      local ok = pcall(vim.treesitter.language.inspect, lang)
+      local ok = treesitter.get_installed()
       if not ok then
         -- Parser not available; install just this one.
         treesitter.install({ lang })
