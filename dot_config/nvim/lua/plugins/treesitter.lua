@@ -34,7 +34,23 @@ return {
       "powershell",
     }
 
-    require("nvim-treesitter").install(ts_langs)
+    require("nvim-treesitter.configs").setup({
+      ensure_installed = ts_langs,
+      highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
+      },
+      indent = {
+        enable = true,
+      },
+      autotag = {
+        enable = true,
+      },
+    })
+
+    -- require("nvim-treesitter").install(ts_langs, {
+    --   summary = false,
+    -- })
 
     -- Tree-sitter folds
     vim.opt.foldmethod = "expr"
