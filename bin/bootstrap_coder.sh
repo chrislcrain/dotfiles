@@ -80,6 +80,7 @@ fi
 # Install and autoconfig fzf
 if [ -d $XDG_CONFIG_HOME/fzf ]; then
   $XDG_CONFIG_HOME/fzf/install --no-update-rc --xdg --completion --key-bindings
+  ln -s "$XDG_CONFIG_HOME/fzf/bin/fzf" "$HOME/.local/bin/fzf"
 else
     echo "fzf is missing!"
 fi
