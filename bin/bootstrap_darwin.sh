@@ -76,4 +76,9 @@ if [ ! -e "$HOME/.local/bin/nvim" ]; then
     ln -s "$HOME/.local/nvim/bin/nvim" "$HOME/.local/bin/nvim"
 fi
 
+# Configure tfenv
+if [ ! -e "$HOME/.local/bin/tfenv" ]; then
+    ln -s "$HOME/.local/tfenv/bin/tfenv" "$HOME/.local/bin/tfenv"
+fi
+
 exec zsh
