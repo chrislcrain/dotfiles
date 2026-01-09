@@ -81,4 +81,9 @@ if [ ! -e "$HOME/.local/bin/tfenv" ]; then
     ln -s "$HOME/.local/tfenv/bin/tfenv" "$HOME/.local/bin/tfenv"
 fi
 
+# Configure terraform shim via tfenv
+if [ ! -e "$HOME/.local/bin/terraform" ]; then
+    ln -s "$HOME/.local/tfenv/bin/terraform" "$HOME/.local/bin/terraform"
+fi
+
 exec zsh
