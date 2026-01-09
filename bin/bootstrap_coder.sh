@@ -99,7 +99,7 @@ if [ ! -e "$HOME/.local/bin/nvim" ]; then
 fi
 
 # Configure tfenv
-if [ ! -e "$HOME/.local/tfenv/bin" ]; then
+if [ ! -e "$HOME/.local/bin/tfenv" ]; then
     ln -s "$HOME/.local/tfenv/bin/tfenv" "$HOME/.local/bin/tfenv"
 fi
 
