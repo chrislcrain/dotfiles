@@ -39,14 +39,14 @@ tar -xzf "powershell-$POWERSHELL_VERSION-linux-x64.tar.gz" -C "$HOME/.local/pwsh
 ln -sf "$HOME/.local/pwsh/pwsh" "$HOME/.local/bin/pwsh"
 rm "powershell-$POWERSHELL_VERSION-linux-x64.tar.gz"
 
-# Install HashiCorp tools (Terraform, Packer) user-local
-for tool in terraform packer; do
-  LATEST=$(curl -s "https://checkpoint-api.hashicorp.com/v1/check/$tool" | grep -Po '"current_version":.*?[^\\]",' | awk -F'"' '{print $4}')
-  curl -Lo "$HOME/.local/bin/$tool.zip" "https://releases.hashicorp.com/$tool/${LATEST}/${tool}_${LATEST}_linux_amd64.zip"
-  unzip -o "$HOME/.local/bin/$tool.zip" -d "$HOME/.local/bin/"
-  chmod +x "$HOME/.local/bin/$tool"
-  rm "$HOME/.local/bin/$tool.zip"
-done
+# # Install HashiCorp tools (Terraform, Packer) user-local
+# for tool in terraform packer; do
+#   LATEST=$(curl -s "https://checkpoint-api.hashicorp.com/v1/check/$tool" | grep -Po '"current_version":.*?[^\\]",' | awk -F'"' '{print $4}')
+#   curl -Lo "$HOME/.local/bin/$tool.zip" "https://releases.hashicorp.com/$tool/${LATEST}/${tool}_${LATEST}_linux_amd64.zip"
+#   unzip -o "$HOME/.local/bin/$tool.zip" -d "$HOME/.local/bin/"
+#   chmod +x "$HOME/.local/bin/$tool"
+#   rm "$HOME/.local/bin/$tool.zip"
+# done
 
 # Install Node.js (user-local, via n or nvm)
 curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o "$HOME/.local/bin/n"
