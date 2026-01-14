@@ -65,6 +65,14 @@ opt.wrap = false
 -- vim.ui.input = require("snacks").input
 
 {{- if eq .chezmoi.username "coder" }}
+local function osc52_paste(_)
+  -- read from Neovim's unnamed register instead of OSC52
+  return function()
+    local content = vim.fn.getreg('"')
+    return vim.split(content, "\n")
+  end
+end
+
 vim.g.clipboard = {
   name = "OSC 52",
   copy = {
@@ -72,8 +80,8 @@ vim.g.clipboard = {
     ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
   },
   paste = {
-    ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
-    ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+    ["+"] = osc52_paste("+"),
+    ["*"] = osc52_paste("*"),
   },
 }
 {{- end }}
