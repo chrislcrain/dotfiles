@@ -58,8 +58,8 @@ export N_PREFIX="$HOME/.local"
 rm -f packages-microsoft-prod.deb
 
 # Set up .vim and undodir
-mkdir -p $HOME/vim/undodir
-chmod 777 $HOME/vim $HOME/vim/undodir
+mkdir -p $HOME/.vim/undodir
+chmod 777 $HOME/.vim $HOME/.vim/undodir
 
 # Install debugpy (pipx user-local)
 pipx install debugpy
