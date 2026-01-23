@@ -2,8 +2,8 @@
 
 # Set environment variables for user-local installations
 export PATH="$HOME/.local/bin:$PATH"
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"                                                                                                               
 export ZSH_CUSTOM="$XDG_CONFIG_HOME/ohmyzsh/.zsh_custom"
-
 cd $HOME
 
 # Ensure local bin exists
