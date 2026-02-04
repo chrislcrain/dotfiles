@@ -8,12 +8,16 @@ return {
     "j-hui/fidget.nvim",
   },
   config = function()
-    vim.keymap.set("n", "<leader>ch", "<cmd>CodeCompanionChat Toggle<CR>") -- toggle chat
+    -- Keymap: toggle chat
+    vim.keymap.set("n", "<leader>ch", "<cmd>CodeCompanionChat Toggle<CR>")
+
+    -- Fidget (LSP progress)
     require("fidget").setup({
       progress = {
         ignore = { "basedpyright" },
       },
     })
+
     require("codecompanion").setup({
       display = {
         chat = {
@@ -27,38 +31,43 @@ return {
         },
         diff = {
           enabled = true,
-          -- close_chat_at = 240, -- Close an open chat buffer if the total columns of your display are less than...
-          layout = "vertical", -- vertical|horizontal split for default provider
+          layout = "vertical", -- vertical|horizontal
           opts = { "internal", "filler", "closeoff", "algorithm:patience", "followwrap", "linematch:120" },
           provider = "mini_diff", -- default|mini_diff
         },
       },
+
       strategies = {
+        adapter = "copilot",
+
         chat = {
+          -- Automatically include the current file in context
           default_context = { "file" },
+
           slash_commands = {
-            ["file"] = {
-              -- Location to the slash command in CodeCompanion
-              callback = "strategies.chat.slash_commands.file",
+            file = {
               description = "Select files using Telescope",
               opts = {
-                provider = "telescope", -- Other options include 'default', 'mini_pick', 'fzf_lua', snacks
+                provider = "telescope", -- or 'default', 'mini_pick', 'fzf_lua', 'snacks'
                 contains_code = true,
-                multi_select = true, -- Enable multi-selection
+                multi_select = true,
+              },
+            },
+
+            buffer = {
+              description = "Select a buffer using Telescope",
+              opts = {
+                provider = "telescope",
+                contains_code = true,
               },
             },
           },
-          ["buffer"] = {
-            description = "Select a buffer using Telescope",
-            opts = {
-              provider = "telescope", -- Other options include 'default', 'mini_pick', 'fzf_lua', snacks
-              contains_code = true,
-            },
-          },
         },
+      },
+
+      inline = {
         adapter = "copilot",
       },
-      inline = { adapter = "copilot" },
     })
   end,
 }
