@@ -2,8 +2,8 @@
 
 # Set environment variables for user-local installations
 export PATH="$HOME/.local/bin:$PATH"
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"                                                                                                               
 export ZSH_CUSTOM="$XDG_CONFIG_HOME/ohmyzsh/.zsh_custom"
-
 cd $HOME
 
 # Ensure local bin exists
@@ -58,8 +58,8 @@ export N_PREFIX="$HOME/.local"
 rm -f packages-microsoft-prod.deb
 
 # Set up .vim and undodir
-mkdir -p $HOME/vim/undodir
-chmod 777 $HOME/vim $HOME/vim/undodir
+mkdir -p $HOME/.vim/undodir
+chmod 777 $HOME/.vim $HOME/.vim/undodir
 
 # Install debugpy (pipx user-local)
 pipx install debugpy
