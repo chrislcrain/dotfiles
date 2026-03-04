@@ -15,13 +15,6 @@ sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
   libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
   xz-utils tk-dev libffi-dev liblzma-dev python3-openssl git zsh
 
-# Install pyenv (installs to $HOME/pyenv)
-if [ ! -d "$HOME/.pyenv" ]; then
-    curl https://pyenv.run | bash
-    export PATH="$HOME/.pyenv/bin:$PATH"
-    eval "$(pyenv init -)"
-fi
-
 # Install Azure CLI (pipx user install)
 pipx install azure-cli
 
@@ -38,15 +31,6 @@ mkdir -p "$HOME/.local/pwsh"
 tar -xzf "powershell-$POWERSHELL_VERSION-linux-x64.tar.gz" -C "$HOME/.local/pwsh"
 ln -sf "$HOME/.local/pwsh/pwsh" "$HOME/.local/bin/pwsh"
 rm "powershell-$POWERSHELL_VERSION-linux-x64.tar.gz"
-
-# # Install HashiCorp tools (Terraform, Packer) user-local
-# for tool in terraform packer; do
-#   LATEST=$(curl -s "https://checkpoint-api.hashicorp.com/v1/check/$tool" | grep -Po '"current_version":.*?[^\\]",' | awk -F'"' '{print $4}')
-#   curl -Lo "$HOME/.local/bin/$tool.zip" "https://releases.hashicorp.com/$tool/${LATEST}/${tool}_${LATEST}_linux_amd64.zip"
-#   unzip -o "$HOME/.local/bin/$tool.zip" -d "$HOME/.local/bin/"
-#   chmod +x "$HOME/.local/bin/$tool"
-#   rm "$HOME/.local/bin/$tool.zip"
-# done
 
 # Install Node.js (user-local, via n or nvm)
 curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o "$HOME/.local/bin/n"
@@ -106,6 +90,11 @@ fi
 # Configure terraform shim via tfenv
 if [ ! -e "$HOME/.local/bin/terraform" ]; then
     ln -s "$HOME/.local/tfenv/bin/terraform" "$HOME/.local/bin/terraform"
+fi
+
+# Configure pyenv shim
+if [ ! -e "$HOME/.local/bin/pyenv" ]; then
+    ln -s "$HOME/.local/pyenv/bin/pyenv" "$HOME/.local/bin/pyenv"
 fi
 
 exec zsh
