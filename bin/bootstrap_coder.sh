@@ -13,13 +13,14 @@ mkdir -p "$HOME/.local/bin"
 sudo apt update
 sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
   libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
-  xz-utils tk-dev libffi-dev liblzma-dev python3-openssl git zsh
+  xz-utils tk-dev libffi-dev liblzma-dev python3-openssl git zsh direnv gh git pipx \
+  ripgrep wget luarocks
 
 # Install Azure CLI (pipx user install)
 pipx install azure-cli
 
-# Install core utilities
-sudo apt install -y direnv gh git pipx ripgrep wget luarocks
+# Install uv
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Install chezmoi (user-local)
 sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "$HOME/.local/bin"
