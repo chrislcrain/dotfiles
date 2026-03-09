@@ -21,3 +21,6 @@ alias history='history -i -D'
 
 # kubectl
 alias k='kubectl'
+
+# nvim->vim
+alias vim='nvim'
