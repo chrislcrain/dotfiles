@@ -32,21 +32,21 @@ return {
       "c",
       "python",
       "powershell",
+      "hcl",
     }
 
     local treesitter = require("nvim-treesitter")
+    local installed = treesitter.get_installed()
+    local installed_set = {}
+    for _, lang in ipairs(installed) do
+      installed_set[lang] = true
+    end
 
     for _, lang in ipairs(ts_langs) do
-      local ok = treesitter.get_installed()
-      if not ok then
-        -- Parser not available; install just this one.
+      if not installed_set[lang] then
         treesitter.install({ lang })
       end
     end
-
-    -- require("nvim-treesitter").install(ts_langs, {
-    --   summary = false,
-    -- })
 
     -- Tree-sitter folds
     vim.opt.foldmethod = "expr"
