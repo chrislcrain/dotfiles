@@ -7,7 +7,11 @@ fi
 DISABLE_AUTO_UPDATE="true"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 export EDITOR="nvim"
-export KEYTIMEOUT=10
+if [[ -n "$NVIM" ]]; then
+  export KEYTIMEOUT=50
+else
+  export KEYTIMEOUT=10
+fi
 
 plugins=(
   git

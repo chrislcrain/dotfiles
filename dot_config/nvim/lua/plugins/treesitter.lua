@@ -65,6 +65,18 @@ return {
       end,
     })
 
+    -- Re-sync treesitter highlighting to fix color bleeding on large files
+    vim.api.nvim_create_autocmd("CursorHold", {
+      group = ts_group,
+      pattern = "*",
+      callback = function(args)
+        if vim.treesitter.highlighter.active[args.buf] then
+          vim.treesitter.stop(args.buf)
+          vim.treesitter.start(args.buf)
+        end
+      end,
+    })
+
     -- nvim-ts-autotag defaults.
     require("nvim-ts-autotag").setup()
   end,
