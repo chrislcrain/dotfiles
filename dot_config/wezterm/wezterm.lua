@@ -92,7 +92,7 @@ config.window_decorations = "RESIZE"
 config.native_macos_fullscreen_mode = true
 
 -- Keys and mappings
-config.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 800 }
+config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 800 }
 config.keys = {
 	-- More easy split key mappings
 	{ key = "v", mods = "LEADER", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
