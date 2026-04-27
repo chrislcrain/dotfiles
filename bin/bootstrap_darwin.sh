@@ -86,4 +86,13 @@ if [ ! -e "$HOME/.local/bin/terraform" ]; then
     ln -s "$HOME/.local/tfenv/bin/terraform" "$HOME/.local/bin/terraform"
 fi
 
+# Build and install tmux from source to ~/.local
+if [ ! -e "$HOME/.local/bin/tmux" ]; then
+    (cd "$HOME/.local/src/tmux" && \
+        touch aclocal.m4 configure Makefile.in && \
+        ./configure --prefix="$HOME/.local" --enable-utf8proc && \
+        make && \
+        make install)
+fi
+
 exec zsh

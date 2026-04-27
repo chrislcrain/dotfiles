@@ -12,7 +12,8 @@ sudo apt update
 # Essential build tools (for some language tools)
 sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
   libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
-  xz-utils tk-dev libffi-dev liblzma-dev python3-openssl git zsh
+  xz-utils tk-dev libffi-dev liblzma-dev python3-openssl git zsh \
+  libevent-dev bison pkg-config
 
 # Install pyenv
 if [ ! -d ~/.pyenv ]; then
@@ -92,6 +93,15 @@ fi
 ./$XDG_CONFIG_HOME/fzf/install --xdg --key-bindings --completion --no-update-rc
 
 /opt/nvim-linux-x86_64/bin/nvim --headless "+Lazy! sync" +qa
+
+# Build and install tmux from source to ~/.local
+if [ ! -e "$HOME/.local/bin/tmux" ]; then
+    (cd "$HOME/.local/src/tmux" && \
+        touch aclocal.m4 configure Makefile.in && \
+        ./configure --prefix="$HOME/.local" && \
+        make && \
+        make install)
+fi
 
 sudo chsh "$(id -un)" --shell "/usr/bin/zsh"
 

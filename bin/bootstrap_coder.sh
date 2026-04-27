@@ -14,7 +14,7 @@ sudo apt update
 sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
   libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
   xz-utils tk-dev libffi-dev liblzma-dev python3-openssl git zsh direnv gh git pipx \
-  ripgrep wget luarocks
+  ripgrep wget luarocks libevent-dev bison pkg-config
 
 # Install Azure CLI (pipx user install)
 pipx install azure-cli
@@ -96,6 +96,15 @@ fi
 # Configure pyenv shim
 if [ ! -e "$HOME/.local/bin/pyenv" ]; then
     ln -s "$HOME/.local/pyenv/bin/pyenv" "$HOME/.local/bin/pyenv"
+fi
+
+# Build and install tmux from source to ~/.local
+if [ ! -e "$HOME/.local/bin/tmux" ]; then
+    (cd "$HOME/.local/src/tmux" && \
+        touch aclocal.m4 configure Makefile.in && \
+        ./configure --prefix="$HOME/.local" && \
+        make && \
+        make install)
 fi
 
 exec zsh
