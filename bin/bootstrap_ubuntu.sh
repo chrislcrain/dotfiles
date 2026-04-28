@@ -29,7 +29,7 @@ sudo rm -rf /opt/nvim
 sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
 
 # Core utilities
-sudo apt install -y xz-utils azure-cli direnv gh git pipx ripgrep wget luarocks
+sudo apt install -y xz-utils azure-cli direnv gh git pipx ripgrep wget luarocks bc
 
 # chezmoi (official script, as apt repo may not be up-to-date)
 sh -c "$(curl -fsLS get.chezmoi.io)"
