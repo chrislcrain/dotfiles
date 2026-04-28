@@ -5,11 +5,11 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Auto-attach to tmux on interactive shell launch
+# Start a fresh tmux session on interactive shell launch
 if [[ -z "$TMUX" ]] && [[ $- == *i* ]] && [[ -z "$NVIM" ]] \
    && [[ "$TERM_PROGRAM" != "vscode" ]] && [[ -z "$NO_TMUX_AUTOSTART" ]] \
    && command -v tmux >/dev/null 2>&1; then
-  exec tmux new-session -A -s main
+  exec tmux new-session
 fi
 
 DISABLE_AUTO_UPDATE="true"
