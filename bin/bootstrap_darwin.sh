@@ -90,6 +90,7 @@ fi
 if [ ! -e "$HOME/.local/bin/tmux" ]; then
     (cd "$HOME/.local/src/tmux" && \
         touch aclocal.m4 configure Makefile.in && \
+        PKG_CONFIG_PATH="$(brew --prefix libevent)/lib/pkgconfig:$(brew --prefix utf8proc)/lib/pkgconfig:${PKG_CONFIG_PATH:-}" \
         ./configure --prefix="$HOME/.local" --enable-utf8proc && \
         make && \
         make install)

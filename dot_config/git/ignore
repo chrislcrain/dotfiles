@@ -68,3 +68,5 @@ $RECYCLE.BIN/
 
 # CodeCompanion workspace files
 codecompanion-workspace.json
+
+**/.claude/settings.local.json

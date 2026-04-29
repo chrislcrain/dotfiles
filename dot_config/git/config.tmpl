@@ -1,11 +1,14 @@
 [core]
-  editor = code --wait
+	editor = nvim -f
   excludesfile = ~/.config/git/ignore
 [include]
     path = ~/.local/config/git/config
 [user]
 	name = {{ .chezmoi.username }}
+	email = 22624146+chrislcrain@users.noreply.github.com
 [push]
   autoSetupRemote = true
 [pull]
   rebase = false
+[url "git@github.com:"]
+	insteadOf = https://github.com/
