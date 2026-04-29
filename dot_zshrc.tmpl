@@ -6,6 +6,11 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Start a fresh tmux session on interactive shell launch
+# tmux lives in ~/.local/bin, which .profile adds to PATH later — make it
+# visible to `command -v` here so the guard doesn't silently skip.
+if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
+  PATH="$HOME/.local/bin:$PATH"
+fi
 if [[ -z "$TMUX" ]] && [[ $- == *i* ]] && [[ -z "$NVIM" ]] \
    && [[ "$TERM_PROGRAM" != "vscode" ]] && [[ -z "$NO_TMUX_AUTOSTART" ]] \
    && command -v tmux >/dev/null 2>&1; then
