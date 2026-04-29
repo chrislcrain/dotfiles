@@ -2,7 +2,6 @@ return {
   "nvim-treesitter/nvim-treesitter",
   lazy = false,
   branch = "main",
-  event = { "BufReadPre", "BufNewFile" },
   build = ":TSUpdate",
   dependencies = {
     "windwp/nvim-ts-autotag",
@@ -61,9 +60,20 @@ return {
       group = ts_group,
       pattern = ts_langs,
       callback = function(args)
-        vim.treesitter.start(args.buf)
+        pcall(vim.treesitter.start, args.buf)
       end,
     })
+
+    -- Catch buffers that were loaded before the autocmd above was registered
+    -- (e.g. the file passed on the command line at startup)
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+      if vim.api.nvim_buf_is_loaded(buf) then
+        local ft = vim.bo[buf].filetype
+        if vim.tbl_contains(ts_langs, ft) then
+          pcall(vim.treesitter.start, buf)
+        end
+      end
+    end
 
     -- Re-sync treesitter highlighting to fix color bleeding on large files
     vim.api.nvim_create_autocmd("CursorHold", {

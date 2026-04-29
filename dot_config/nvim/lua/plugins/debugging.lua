@@ -10,11 +10,7 @@ return {
     "Willem-J-an/nvim-dap-powershell",
     "theHamsta/nvim-dap-virtual-text",
     "TheLeoP/powershell.nvim",
-    {
-      "m00qek/baleia.nvim",
-      lazy = true,
-      tag = "v1.4.0",
-    },
+    "m00qek/baleia.nvim",
   },
   config = function()
     local mason_registry = require("mason-registry")
