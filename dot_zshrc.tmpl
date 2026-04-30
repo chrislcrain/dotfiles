@@ -5,7 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Start a fresh tmux session on interactive shell launch
+{{- if eq .chezmoi.username "coder" }}
+# On Coder, attach to (or create) the persistent `main` tmux session for
+# every interactive shell so SSH and web-term sessions share state.
 # tmux lives in ~/.local/bin, which .profile adds to PATH later — make it
 # visible to `command -v` here so the guard doesn't silently skip.
 if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
@@ -14,8 +16,9 @@ fi
 if [[ -z "$TMUX" ]] && [[ $- == *i* ]] && [[ -z "$NVIM" ]] \
    && [[ "$TERM_PROGRAM" != "vscode" ]] && [[ -z "$NO_TMUX_AUTOSTART" ]] \
    && command -v tmux >/dev/null 2>&1; then
-  exec tmux new-session
+  exec tmux new-session -A -s main
 fi
+{{- end }}
 
 DISABLE_AUTO_UPDATE="true"
 ZSH_THEME="powerlevel10k/powerlevel10k"
