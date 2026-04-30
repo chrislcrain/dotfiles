@@ -10,5 +10,7 @@
   autoSetupRemote = true
 [pull]
   rebase = false
+{{- if ne .chezmoi.username "coder" }}
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+{{- end }}
