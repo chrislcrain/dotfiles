@@ -1,98 +1,102 @@
 #!/bin/bash
 
-# Set some environment variables
-export PATH="/usr/bin:$PATH"
-export ZSH_CUSTOM="$HOME/.config/ohmyzsh/.zsh_custom"
+# Set environment variables for user-local installations
+export PATH="$HOME/.local/bin:$PATH"
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"                                                                                                               
+export ZSH_CUSTOM="$XDG_CONFIG_HOME/ohmyzsh/.zsh_custom"
+cd $HOME
 
-cd ~
+# Ensure local bin exists
+mkdir -p "$HOME/.local/bin"
 
-# Update package list
+# Install essential build tools for compiling language tools (still requires apt)
 sudo apt update
-
-# Essential build tools (for some language tools)
 sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
   libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
-  xz-utils tk-dev libffi-dev liblzma-dev python3-openssl git zsh \
-  libevent-dev bison pkg-config
+  xz-utils tk-dev libffi-dev liblzma-dev python3-openssl git zsh direnv gh git pipx \
+  ripgrep wget luarocks libevent-dev bison pkg-config bc
 
-# Install pyenv
-if [ ! -d ~/.pyenv ]; then
-    curl https://pyenv.run | bash
-fi
+# Install Azure CLI (pipx user install)
+pipx install azure-cli
 
-# Install azure-cli
-curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+# Install uv
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
-# Install neovim
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
-sudo rm -rf /opt/nvim
-sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
+# Install chezmoi (user-local)
+sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "$HOME/.local/bin"
 
-# Core utilities
-sudo apt install -y xz-utils azure-cli direnv gh git pipx ripgrep wget luarocks bc
+# Install PowerShell (user-local, official tarball)
+POWERSHELL_VERSION="7.4.1"
+curl -LO "https://github.com/PowerShell/PowerShell/releases/download/v$POWERSHELL_VERSION/powershell-$POWERSHELL_VERSION-linux-x64.tar.gz"
+mkdir -p "$HOME/.local/pwsh"
+tar -xzf "powershell-$POWERSHELL_VERSION-linux-x64.tar.gz" -C "$HOME/.local/pwsh"
+ln -sf "$HOME/.local/pwsh/pwsh" "$HOME/.local/bin/pwsh"
+rm "powershell-$POWERSHELL_VERSION-linux-x64.tar.gz"
 
-# chezmoi (official script, as apt repo may not be up-to-date)
-sh -c "$(curl -fsLS get.chezmoi.io)"
-
-# Powershell
-sudo apt install -y wget apt-transport-https software-properties-common
-wget -q "https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/packages-microsoft-prod.deb"
-sudo dpkg -i packages-microsoft-prod.deb
-sudo apt update
-sudo apt install -y powershell
-
-# HashiCorp tools (terraform and packer)
-wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
-sudo apt update
-sudo apt install -y terraform packer
-
-# 1Password CLI
-curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo tee /etc/apt/trusted.gpg.d/1password.asc
-echo 'deb [arch=amd64] https://downloads.1password.com/linux/debian/amd64 stable main' | sudo tee /etc/apt/sources.list.d/1password.list
-sudo apt update
-sudo apt install -y 1password-cli
-
-# Node.js (if you want latest, use NodeSource)
-curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-sudo apt install -y nodejs
+# Install Node.js (user-local, via n or nvm)
+curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o "$HOME/.local/bin/n"
+chmod +x "$HOME/.local/bin/n"
+export N_PREFIX="$HOME/.local"
+"$HOME/.local/bin/n" latest
 
 # Clean up
 rm -f packages-microsoft-prod.deb
 
+# Set up .vim and undodir
+mkdir -p $HOME/.vim/undodir
+chmod 777 $HOME/.vim $HOME/.vim/undodir
 
-if [ ! -d ~/.vim ]; then
-    mkdir ~/.vim
-    chmod 777 ~/.vim
-fi
-
-# Add .vim undodir for undotree
-if [ ! -d ~/.vim/undodir ]; then
-    mkdir ~/.vim/undodir/
-    chmod 777 ~/.vim/undodir/
-fi
-
-# Add debugpy to system python
+# Install debugpy (pipx user-local)
 pipx install debugpy
 
-# Add poetry and poetry configs to the system
+# Install poetry (pipx user-local)
 if ! command -v poetry &> /dev/null; then
-    pipx ensurepath
     pipx install poetry
 fi
 
+# Poetry zsh completions
 if [ ! -d "$ZSH_CUSTOM/plugins/poetry" ]; then
     mkdir -p "$ZSH_CUSTOM/plugins/poetry"
 fi
-
 if [ ! -f "$ZSH_CUSTOM/plugins/poetry/_poetry" ]; then
     poetry completions zsh > "$ZSH_CUSTOM/plugins/poetry/_poetry"
 fi
 
-# Install fzf
-./$XDG_CONFIG_HOME/fzf/install --xdg --key-bindings --completion --no-update-rc
+# Install and autoconfig fzf
+if [ -d $XDG_CONFIG_HOME/fzf ]; then
+  $XDG_CONFIG_HOME/fzf/install --no-update-rc --xdg --completion --key-bindings
+  ln -s "$XDG_CONFIG_HOME/fzf/bin/fzf" "$HOME/.local/bin/fzf"
+else
+    echo "fzf is missing!"
+fi
 
-/opt/nvim-linux-x86_64/bin/nvim --headless "+Lazy! sync" +qa
+# Install treesitter cli
+gunzip -d "$HOME/.local/tree-sitter-cli/tree-sitter-linux-x64.gz"
+chmod +x "$HOME/.local/tree-sitter-cli/tree-sitter-linux-x64"
+if [ ! -e "$HOME/.local/bin/tree-sitter" ]; then
+    ln -s "$HOME/.local/tree-sitter-cli/tree-sitter-linux-x64" "$HOME/.local/bin/tree-sitter"
+fi
+
+# Run Neovim first time configs and add to PATH
+$HOME/.local/nvim/bin/nvim --headless "+Lazy! sync" +qa
+if [ ! -e "$HOME/.local/bin/nvim" ]; then
+    ln -s "$HOME/.local/nvim/bin/nvim" "$HOME/.local/bin/nvim"
+fi
+
+# Configure tfenv
+if [ ! -e "$HOME/.local/bin/tfenv" ]; then
+    ln -s "$HOME/.local/tfenv/bin/tfenv" "$HOME/.local/bin/tfenv"
+fi
+
+# Configure terraform shim via tfenv
+if [ ! -e "$HOME/.local/bin/terraform" ]; then
+    ln -s "$HOME/.local/tfenv/bin/terraform" "$HOME/.local/bin/terraform"
+fi
+
+# Configure pyenv shim
+if [ ! -e "$HOME/.local/bin/pyenv" ]; then
+    ln -s "$HOME/.local/pyenv/bin/pyenv" "$HOME/.local/bin/pyenv"
+fi
 
 # Build and install tmux from source to ~/.local
 if [ ! -e "$HOME/.local/bin/tmux" ]; then
@@ -102,7 +106,5 @@ if [ ! -e "$HOME/.local/bin/tmux" ]; then
         make && \
         make install)
 fi
-
-sudo chsh "$(id -un)" --shell "/usr/bin/zsh"
 
 exec zsh
