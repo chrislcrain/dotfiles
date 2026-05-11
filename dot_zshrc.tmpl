@@ -13,10 +13,13 @@ fi
 if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
   PATH="$HOME/.local/bin:$PATH"
 fi
+
+export LANG=C.UTF-8
+
 if [[ -z "$TMUX" ]] && [[ $- == *i* ]] && [[ -z "$NVIM" ]] \
    && [[ "$TERM_PROGRAM" != "vscode" ]] && [[ -z "$NO_TMUX_AUTOSTART" ]] \
    && command -v tmux >/dev/null 2>&1; then
-  exec tmux new-session -A -s main
+  exec tmux -u new-session -A -s main
 fi
 {{- end }}
 
