@@ -61,6 +61,11 @@ export PATH="$PATH:$HOME/.local/bin"
 # Go toolchain + `go install` binaries (e.g. sedge)
 export PATH="$PATH:$HOME/.local/go/bin:$HOME/go/bin"
 
+{{- if eq .chezmoi.username "coder" }}
+# Keep sedge state on /code so it survives Coder workspace rebuilds.
+export SEDGE_HOME=/code/.sedge
+{{- end }}
+
 export CODER_SSH_FORWARD_AGENT=TRUE
 
 source $XDG_CONFIG_HOME/ohmyzsh/.zsh_custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
