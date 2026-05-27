@@ -100,11 +100,19 @@ fi
 
 # Build and install tmux from source to ~/.local
 if [ ! -e "$HOME/.local/bin/tmux" ]; then
-    (cd "$HOME/.local/src/tmux" && \
+    TMUX_BUILD_LOG="$HOME/.local/src/tmux/build.log"
+    echo "Building tmux from source (logging to $TMUX_BUILD_LOG)..."
+    if (cd "$HOME/.local/src/tmux" && \
         touch aclocal.m4 configure Makefile.in && \
         ./configure --prefix="$HOME/.local" && \
         make && \
-        make install)
+        make install) > "$TMUX_BUILD_LOG" 2>&1; then
+        echo "tmux build succeeded."
+    else
+        echo "tmux build FAILED - see $TMUX_BUILD_LOG"
+        tail -50 "$TMUX_BUILD_LOG"
+        exit 1
+    fi
 fi
 
 exec zsh
