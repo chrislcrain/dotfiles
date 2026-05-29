@@ -16,6 +16,21 @@ fi
 
 export LANG=C.UTF-8
 
+# Keep a stable SSH agent socket so the persistent `main` tmux session
+# survives reconnects. Each new SSH connection gets a fresh forwarded
+# socket (/tmp/ssh-*/agent.*); the long-lived tmux panes still point at
+# the previous, now-dead one, so `ssh-add -l` reports no keys. Re-point a
+# fixed symlink at the live socket on every connect and have all shells
+# resolve through it.
+if [[ -n "$SSH_AUTH_SOCK" && -S "$SSH_AUTH_SOCK" \
+      && "$SSH_AUTH_SOCK" != "$HOME/.ssh/ssh_auth_sock" ]]; then
+  mkdir -p "$HOME/.ssh"
+  ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh/ssh_auth_sock"
+fi
+if [[ -L "$HOME/.ssh/ssh_auth_sock" ]]; then
+  export SSH_AUTH_SOCK="$HOME/.ssh/ssh_auth_sock"
+fi
+
 if [[ -z "$TMUX" ]] && [[ $- == *i* ]] && [[ -z "$NVIM" ]] \
    && [[ "$TERM_PROGRAM" != "vscode" ]] && [[ -z "$NO_TMUX_AUTOSTART" ]] \
    && command -v tmux >/dev/null 2>&1; then
