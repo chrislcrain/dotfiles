@@ -1,0 +1,25 @@
+{{- if eq .chezmoi.username "coder" -}}
+#!/bin/bash
+# Write herdr's config to $HERDR_CONFIG_PATH (/code/.herdr) so it survives Coder
+# workspace rebuilds. /code is outside $HOME, so chezmoi can't manage the file
+# directly; this run_onchange script re-applies it whenever the contents change.
+set -euo pipefail
+
+HERDR_CONFIG_PATH="${HERDR_CONFIG_PATH:-/code/.herdr/}"
+mkdir -p "$HERDR_CONFIG_PATH"
+
+cat > "${HERDR_CONFIG_PATH%/}/config.toml" <<'EOF'
+[keys]
+# tmux owns C-Space as its prefix and unbinds C-b, so herdr keeping the default
+# C-b prefix means the two multiplexers never fight over a prefix.
+prefix = "ctrl+b"
+
+# Mirror the vim-tmux-navigator muscle memory: bare Ctrl+h/j/k/l move between
+# herdr panes. ~/.tmux.conf detects the herdr pane and forwards these keys
+# (instead of switching tmux panes) via the is_vim_or_herdr guard.
+focus_pane_left = "ctrl+h"
+focus_pane_down = "ctrl+j"
+focus_pane_up = "ctrl+k"
+focus_pane_right = "ctrl+l"
+EOF
+{{- end -}}

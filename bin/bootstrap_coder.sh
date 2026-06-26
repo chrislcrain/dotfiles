@@ -25,6 +25,11 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 # Install chezmoi (user-local)
 sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "$HOME/.local/bin"
 
+# Install herdr (user-local) with config path pointed at /code/.herdr
+export HERDR_CONFIG_PATH="/code/.herdr/"
+mkdir -p "$HERDR_CONFIG_PATH"
+curl -fsSL https://herdr.dev/install.sh | sh
+
 # Install PowerShell (user-local, official tarball)
 POWERSHELL_VERSION="7.4.1"
 curl -LO "https://github.com/PowerShell/PowerShell/releases/download/v$POWERSHELL_VERSION/powershell-$POWERSHELL_VERSION-linux-x64.tar.gz"

@@ -79,6 +79,8 @@ export PATH="$PATH:$HOME/.local/go/bin:$HOME/go/bin"
 {{- if eq .chezmoi.username "coder" }}
 # Keep sedge state on /code so it survives Coder workspace rebuilds.
 export SEDGE_HOME=/code/.sedge
+# Keep herdr config on /code so it survives Coder workspace rebuilds.
+export HERDR_CONFIG_PATH=/code/.herdr/
 {{- end }}
 
 export CODER_SSH_FORWARD_AGENT=TRUE

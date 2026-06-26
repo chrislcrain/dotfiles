@@ -113,6 +113,28 @@ Environment paths are extended in `.zshrc.tmpl` with:
 - `~/.local/bin` for user binaries
 - Platform-specific paths (PostgreSQL on macOS, Mason LSP servers, etc.)
 
+### Terminal Multiplexing (tmux + herdr)
+
+tmux is the outer multiplexer; [herdr](https://herdr.dev) (an agent multiplexer,
+Coder-only) runs *inside* a tmux pane. They coexist via two deliberate choices:
+
+- **Distinct prefixes.** tmux uses `C-Space` (and `unbind C-b` in `dot_tmux.conf`),
+  so herdr keeps its default `C-b` prefix and passes through tmux untouched. Never
+  point herdr's prefix at `C-Space`.
+- **Forwarded pane navigation.** `dot_tmux.conf` has an `is_vim_or_herdr` guard
+  (the vim-tmux-navigator pattern) on the root-table `C-h/j/k/l` bindings: when the
+  focused pane runs vim *or* herdr, the keys are forwarded to the inner app instead
+  of switching tmux panes. herdr's `config.toml` maps `focus_pane_* = ctrl+h/j/k/l`
+  to match, so the same muscle memory drives both. The guard is per-pane, so the
+  keys still switch tmux panes everywhere else.
+
+herdr is installed in `bin/bootstrap_coder.sh`. Its config path is set via
+`HERDR_CONFIG_PATH=/code/.herdr/` (in both `dot_zshrc.tmpl` and the bootstrap) so it
+survives Coder workspace rebuilds, mirroring `SEDGE_HOME`. Because `/code` is outside
+`$HOME`, chezmoi can't manage the file directly — `run_onchange_herdr-config.sh.tmpl`
+(coder-gated) writes `/code/.herdr/config.toml` and re-applies it on `chezmoi apply`
+whenever its contents change.
+
 ## Development Tools
 
 ### Language Tooling
