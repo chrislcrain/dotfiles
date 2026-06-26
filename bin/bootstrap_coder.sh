@@ -120,4 +120,10 @@ if [ ! -e "$HOME/.local/bin/tmux" ]; then
     fi
 fi
 
-exec zsh
+# Drop into zsh when this script is run by hand. chezmoi sets CHEZMOI=1 in the
+# environment of scripts it runs; under `chezmoi apply`/`init` we must NOT exec an
+# interactive shell here, or apply never returns (it would block forever waiting on
+# the shell) and later scripts like run_onchange_herdr-config.sh never run.
+if [ -z "${CHEZMOI:-}" ]; then
+    exec zsh
+fi
