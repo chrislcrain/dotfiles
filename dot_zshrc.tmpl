@@ -81,6 +81,16 @@ export PATH="$PATH:$HOME/.local/go/bin:$HOME/go/bin"
 export SEDGE_HOME=/code/.sedge
 # Keep herdr config on /code so it survives Coder workspace rebuilds.
 export HERDR_CONFIG_PATH=/code/.herdr/
+# Persisted binaries (aws-vault, codex — installed by /code/personalize).
+export PATH="/code/bin:$PATH"
+# aws-vault: no desktop keyring in the workspace, so use the encrypted file
+# backend, and keep the vault + AWS config on /code so they survive rebuilds.
+export AWS_VAULT_BACKEND=file
+export AWS_VAULT_FILE_DIR=/code/.awsvault/keys
+export AWS_CONFIG_FILE=/code/.aws/config
+# Vault only holds short-lived SSO tokens (no long-lived keys), so an
+# on-disk passphrase is an acceptable tradeoff for unattended use.
+[ -f /code/.awsvault/passphrase ] && export AWS_VAULT_FILE_PASSPHRASE="$(cat /code/.awsvault/passphrase)"
 {{- end }}
 
 export CODER_SSH_FORWARD_AGENT=TRUE
