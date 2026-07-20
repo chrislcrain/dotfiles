@@ -6,14 +6,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 {{- if eq .chezmoi.username "coder" }}
-# On Coder, attach to (or create) the persistent `main` tmux session for
-# every interactive shell so SSH and web-term sessions share state.
-# tmux lives in ~/.local/bin, which .profile adds to PATH later — make it
-# visible to `command -v` here so the guard doesn't silently skip.
-if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
-  PATH="$HOME/.local/bin:$PATH"
-fi
-
 export LANG=C.UTF-8
 
 # Keep a stable SSH agent socket so the persistent `main` tmux session
@@ -29,12 +21,6 @@ if [[ -n "$SSH_AUTH_SOCK" && -S "$SSH_AUTH_SOCK" \
 fi
 if [[ -L "$HOME/.ssh/ssh_auth_sock" ]]; then
   export SSH_AUTH_SOCK="$HOME/.ssh/ssh_auth_sock"
-fi
-
-if [[ -z "$TMUX" ]] && [[ $- == *i* ]] && [[ -z "$NVIM" ]] \
-   && [[ "$TERM_PROGRAM" != "vscode" ]] && [[ -z "$NO_TMUX_AUTOSTART" ]] \
-   && command -v tmux >/dev/null 2>&1; then
-  exec tmux -u new-session -A -s main
 fi
 {{- end }}
 
@@ -77,19 +63,11 @@ export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.local/go/bin:$HOME/go/bin"
 
 {{- if eq .chezmoi.username "coder" }}
-# Keep sedge state on /code so it survives Coder workspace rebuilds.
-export SEDGE_HOME=/code/.sedge
-# Keep herdr config on /code so it survives Coder workspace rebuilds.
 export HERDR_CONFIG_PATH=/code/.herdr/
-# Persisted binaries (aws-vault, codex — installed by /code/personalize).
 export PATH="/code/bin:$PATH"
-# aws-vault: no desktop keyring in the workspace, so use the encrypted file
-# backend, and keep the vault + AWS config on /code so they survive rebuilds.
 export AWS_VAULT_BACKEND=file
 export AWS_VAULT_FILE_DIR=/code/.awsvault/keys
 export AWS_CONFIG_FILE=/code/.aws/config
-# Vault only holds short-lived SSO tokens (no long-lived keys), so an
-# on-disk passphrase is an acceptable tradeoff for unattended use.
 [ -f /code/.awsvault/passphrase ] && export AWS_VAULT_FILE_PASSPHRASE="$(cat /code/.awsvault/passphrase)"
 {{- end }}
 
