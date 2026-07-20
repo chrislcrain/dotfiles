@@ -5,7 +5,6 @@ return {
     "mfussenegger/nvim-dap-python",
     "nvim-lua/plenary.nvim",
     "rcarriga/nvim-dap-ui",
-    "rcarriga/nvim-notify",
     "nvim-neotest/nvim-nio",
     "theHamsta/nvim-dap-virtual-text",
     "TheLeoP/powershell.nvim", -- provides PowerShell DAP wiring via nvim-dap

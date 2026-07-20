@@ -64,6 +64,13 @@ opt.wrap = false
 -- enable snacks input window
 -- vim.ui.input = require("snacks").input
 
+-- Native message/cmdline UI (0.12+, replaced noice.nvim). Experimental core
+-- module — pcall so a future rename degrades to the classic message UI
+-- instead of breaking startup. target="msg" floats messages bottom-right.
+pcall(function()
+  require("vim._core.ui2").enable({ msg = { target = "msg" } })
+end)
+
 {{- if eq .chezmoi.username "coder" }}
 local function osc52_paste(_)
   -- read from Neovim's unnamed register instead of OSC52

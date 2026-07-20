@@ -11,5 +11,15 @@ return {
       scope = { char = "┊" },
     },
     input = { enabled = true },
+    notifier = { enabled = true }, -- vim.notify UI (replaced nvim-notify/noice)
+  },
+  keys = {
+    {
+      "<leader>dn",
+      function()
+        require("snacks").notifier.hide()
+      end,
+      desc = "Dismiss all notifications",
+    },
   },
 }
