@@ -1,6 +1,3 @@
--- Set alias for CodeCompanion
-vim.cmd([[cab cc CodeCompanion]])
-
 -- Force persistent_undo
 if vim.fn.has("persistent_undo") == 1 then
   local target_path = vim.fn.expand("$HOME/.vim/undodir")
@@ -22,7 +19,7 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-vim.lsp.set_log_level("off")
+vim.lsp.log.set_level(vim.log.levels.OFF) -- vim.lsp.set_log_level is deprecated in 0.12
 
 vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
   pattern = { "*.jsx" },
@@ -50,10 +47,6 @@ vim.cmd([[autocmd BufRead,BufNewFile *.zsh.tmpl set filetype=zsh]])
 vim.cmd([[autocmd BufRead,BufNewFile *.sh.tmpl set filetype=sh]])
 vim.cmd([[autocmd BufRead,BufNewFile *.toml.tmpl set filetype=toml]])
 vim.cmd([[autocmd BufRead,BufNewFile *_zshrc.tmpl set filetype=zsh]])
-
--- Format TF files on save
-vim.cmd([[let g:terraform_fmt_on_save=1]])
-vim.cmd([[let g:terraform_align=1]])
 
 -- Disable line wrapping for Terraform files
 vim.api.nvim_create_autocmd("FileType", {

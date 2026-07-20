@@ -53,8 +53,6 @@ return {
       sorting = {
         priority_weight = 2,
         comparators = {
-          require("copilot_cmp.comparators").prioritize,
-
           -- Below is the default comparitor list and order for nvim-cmp
           cmp.config.compare.offset,
           -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
@@ -83,7 +81,6 @@ return {
         { name = "luasnip" }, -- snippets
         { name = "buffer" }, -- text within current buffer
         { name = "path" }, -- file system paths
-        { name = "copilot" }, -- copilot
       }),
 
       -- configure lspkind for vs-code like pictograms in completion menu
@@ -92,7 +89,6 @@ return {
         format = lspkind.cmp_format({
           mode = "symbol",
           max_width = 50,
-          symbol_map = { Copilot = "" },
           ellipsis_char = "...",
         }),
       },

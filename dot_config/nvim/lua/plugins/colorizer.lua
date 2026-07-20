@@ -1,6 +1,6 @@
 return {
-  "norcalli/nvim-colorizer.lua",
-  config = function()
-    require("colorizer").setup()
-  end,
+  -- catgoose fork is the maintained continuation (norcalli original is abandoned)
+  "catgoose/nvim-colorizer.lua",
+  event = "BufReadPre",
+  opts = {},
 }

@@ -94,7 +94,7 @@ These are auto-installed/updated based on `refreshPeriod` settings.
 Neovim is configured with:
 - **Lazy.nvim** plugin manager (`lua/lazy.lua`)
 - LSP support via Mason (`lua/plugins/lsp/`)
-- Plugin configurations in `lua/plugins/` (codecompanion, treesitter, debugging, copilot, etc.)
+- Plugin configurations in `lua/plugins/` (treesitter, debugging, claudecode, etc.)
 - Core settings in `lua/core/` (keymaps, options, autocmds)
 - Python host: uses pyenv shims (`~/.pyenv/shims/python3`)
 

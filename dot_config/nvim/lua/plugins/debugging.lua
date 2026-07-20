@@ -1,26 +1,17 @@
 return {
   "mfussenegger/nvim-dap",
   dependencies = {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     "mfussenegger/nvim-dap-python",
     "nvim-lua/plenary.nvim",
     "rcarriga/nvim-dap-ui",
     "rcarriga/nvim-notify",
     "nvim-neotest/nvim-nio",
-    "Willem-J-an/nvim-dap-powershell",
     "theHamsta/nvim-dap-virtual-text",
-    "TheLeoP/powershell.nvim",
+    "TheLeoP/powershell.nvim", -- provides PowerShell DAP wiring via nvim-dap
     "m00qek/baleia.nvim",
   },
   config = function()
-    local mason_registry = require("mason-registry")
-    if mason_registry.is_installed("powershell-editor-services") then
-      local dap_ps = require("dap-powershell")
-      dap_ps.setup()
-    else
-      vim.notify("PowerShell Editor Services (powershell_es) is not installed.", vim.log.levels.WARN)
-    end
-
     -- vim.print(vim.inspect(debugpy_pkg))
     -- local install_path = debugpy_pkg:get_install_path()
     local adapter_python_path = vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python"
@@ -144,7 +135,6 @@ return {
     end
     dap.listeners.after.event_initialized["dapui_config"] = function()
       dapui.open({})
-      -- dap_ps.correct_repl_colors()
     end
     vim.keymap.set("n", "<leader>dt", dapui.toggle)
     vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint)

@@ -19,6 +19,8 @@ return {
         liquid = { "prettier", stop_after_first = true },
         lua = { "stylua", stop_after_first = true },
         python = { "ruff", stop_after_first = true },
+        terraform = { "terraform_fmt" },
+        ["terraform-vars"] = { "terraform_fmt" },
       },
       format_on_save = {
         lsp_fallback = true,

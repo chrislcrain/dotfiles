@@ -31,9 +31,9 @@
 [".local/nvim"]
     type = "archive"
 {{- if eq .chezmoi.os "darwin" }}
-    url = "https://github.com/neovim/neovim/releases/download/v0.11.5/nvim-macos-arm64.tar.gz"
+    url = "https://github.com/neovim/neovim/releases/download/v0.12.4/nvim-macos-arm64.tar.gz"
 {{- else if eq .chezmoi.os "linux" }}
-    url = "https://github.com/neovim/neovim/releases/download/v0.11.5/nvim-linux-x86_64.tar.gz"
+    url = "https://github.com/neovim/neovim/releases/download/v0.12.4/nvim-linux-x86_64.tar.gz"
 {{- end }}
     exact = true
     stripComponents = 1

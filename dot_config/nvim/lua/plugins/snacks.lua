@@ -5,7 +5,11 @@ return {
   ---@type snacks.Config
   opts = {
     bigfile = { enabled = true },
-    indent = { enabled = true },
+    indent = {
+      enabled = true,
+      indent = { char = "┊" }, -- match the old indent-blankline glyph
+      scope = { char = "┊" },
+    },
     input = { enabled = true },
   },
 }

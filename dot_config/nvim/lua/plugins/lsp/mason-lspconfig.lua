@@ -9,6 +9,7 @@ return {
     ensure_installed = {
       "lua_ls",
     },
-    automatic_installation = true,
+    -- v2 note: automatic_enable (default true) is what calls vim.lsp.enable()
+    -- for installed servers; automatic_installation was removed in v2.
   },
 }

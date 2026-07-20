@@ -71,7 +71,7 @@ return {
           },
         },
         lualine_c = { "filename" },
-        lualine_x = { "copilot", "encoding", "fileformat", "filetype" },
+        lualine_x = { "encoding", "fileformat", "filetype" },
         lualine_y = {
           function()
             return vim.loop.os_gethostname()

@@ -4,11 +4,9 @@ return {
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     { "antosha417/nvim-lsp-file-operations", config = true },
-    { "folke/neodev.nvim", opts = {} },
+    { "folke/lazydev.nvim", ft = "lua", opts = {} },
   },
   config = function()
-    local lspconfig = require("lspconfig")
-    local mason_lspconfig = require("mason-lspconfig")
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
     local opts = { noremap = true, silent = true }
     local keymap = vim.keymap
@@ -161,12 +159,7 @@ return {
           completion = {
             callSnippet = "Replace",
           },
-          workspace = {
-            library = {
-              [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-              [vim.fn.stdpath("config") .. "/lua"] = true,
-            },
-          },
+          -- workspace.library is managed by lazydev.nvim
         },
       },
     })
@@ -178,6 +171,6 @@ return {
       shell = "pwsh",
     })
 
-    vim.lsp.set_log_level("error") -- Set log level to "error" to reduce verbosity
+    vim.lsp.log.set_level(vim.log.levels.ERROR) -- reduce verbosity (vim.lsp.set_log_level is deprecated in 0.12)
   end,
 }
