@@ -63,7 +63,9 @@ export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.local/go/bin:$HOME/go/bin"
 
 {{- if eq .chezmoi.username "coder" }}
-export HERDR_CONFIG_PATH=/code/.herdr/
+# Must be the config *file*, not its directory — herdr reads this path
+# directly and falls back to built-in defaults if it isn't a readable file.
+export HERDR_CONFIG_PATH=/code/.herdr/config.toml
 export PATH="/code/bin:$PATH"
 export AWS_VAULT_BACKEND=file
 export AWS_VAULT_FILE_DIR=/code/.awsvault/keys

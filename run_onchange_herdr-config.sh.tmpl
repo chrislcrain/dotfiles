@@ -5,10 +5,15 @@
 # directly; this run_onchange script re-applies it whenever the contents change.
 set -euo pipefail
 
-HERDR_CONFIG_PATH="${HERDR_CONFIG_PATH:-/code/.herdr/}"
-mkdir -p "$HERDR_CONFIG_PATH"
+# HERDR_CONFIG_PATH is the config *file*; tolerate a directory value from
+# older zshrc revisions.
+HERDR_CONFIG_FILE="${HERDR_CONFIG_PATH:-/code/.herdr/config.toml}"
+if [ -d "$HERDR_CONFIG_FILE" ] || [ "${HERDR_CONFIG_FILE%/}" != "$HERDR_CONFIG_FILE" ]; then
+  HERDR_CONFIG_FILE="${HERDR_CONFIG_FILE%/}/config.toml"
+fi
+mkdir -p "$(dirname "$HERDR_CONFIG_FILE")"
 
-cat > "${HERDR_CONFIG_PATH%/}/config.toml" <<'EOF'
+cat > "$HERDR_CONFIG_FILE" <<'EOF'
 [keys]
 # tmux owns C-Space as its prefix and unbinds C-b, so herdr keeping the default
 # C-b prefix means the two multiplexers never fight over a prefix.
