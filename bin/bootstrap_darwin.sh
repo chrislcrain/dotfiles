@@ -70,6 +70,17 @@ else
     echo "Coder is already installed."
 fi
 
+# Install treesitter cli (nvim-treesitter `main` branch compiles parsers with it)
+if [ -f "$HOME/.local/tree-sitter-cli/tree-sitter-macos-arm64.gz" ]; then
+    gunzip -kf "$HOME/.local/tree-sitter-cli/tree-sitter-macos-arm64.gz"
+fi
+if [ -f "$HOME/.local/tree-sitter-cli/tree-sitter-macos-arm64" ]; then
+    chmod +x "$HOME/.local/tree-sitter-cli/tree-sitter-macos-arm64"
+    if [ ! -e "$HOME/.local/bin/tree-sitter" ]; then
+        ln -s "$HOME/.local/tree-sitter-cli/tree-sitter-macos-arm64" "$HOME/.local/bin/tree-sitter"
+    fi
+fi
+
 # Run Neovim first time configs and add to PATH
 $HOME/.local/nvim/bin/nvim --headless "+Lazy! sync" +qa
 if [ ! -e "$HOME/.local/bin/nvim" ]; then
