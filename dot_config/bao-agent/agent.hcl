@@ -4,10 +4,12 @@
 #
 #   ~/.vault-token       the token `bao` and the Terraform vault provider read
 #                        by default. Renewed before expiry; re-authenticated
-#                        from scratch at max_ttl. Should carry the read-only
-#                        `agent-ro` policy -- writes use an OIDC admin token
-#                        held only for the duration of a `terraform apply`:
-#                          BAO_TOKEN=$(bao login -method=oidc -token-only role=admin) terraform apply
+#                        from scratch at max_ttl. Carries `agent-ro` (read the
+#                        whole KV) + `agent-tf-write` (write ONLY the six paths
+#                        cc-live Terraform mirrors generated secrets into), so
+#                        `terraform plan` AND `apply` work with no extra step.
+#                        Anything under sys/ (policies, roles, snapshots) still
+#                        needs an OIDC admin token.
 #
 #   ~/.aws/credentials   ONE profile, [cc-live-r2]: the Cloudflare R2 keys for
 #                        the Terraform state backend, which initialises before

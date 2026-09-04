@@ -93,5 +93,20 @@ return {
         }),
       },
     })
+
+    -- Some servers (terraform-ls, jdtls, ...) attach the VS Code command
+    -- `editor.action.triggerSuggest` to a completion item, expecting the client
+    -- to re-open the menu once the item is accepted. cmp-nvim-lsp forwards it to
+    -- the server as workspace/executeCommand, where it goes nowhere -- so accept
+    -- the `resource` block snippet from terraform-ls and the provider-aware
+    -- resource-type list never appears. Handle the command client-side instead.
+    cmp.event:on("confirm_done", function(event)
+      local item = event.entry and event.entry:get_completion_item()
+      if item and item.command and item.command.command == "editor.action.triggerSuggest" then
+        vim.schedule(function()
+          cmp.complete()
+        end)
+      end
+    end)
   end,
 }
