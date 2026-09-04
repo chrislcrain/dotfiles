@@ -17,7 +17,7 @@
 #
 # The AppRole secret half lives at ~/.config/cc-live/agent-secret-id (0600,
 # issued once per device by an admin: `bao write -f auth/approle/role/agent/secret-id`).
-# Not a chezmoi template on purpose: HCL template syntax would collide.
+# Neither this file nor the .ctmpl is a chezmoi template: their {{ }} would collide with chezmoi's.
 pid_file = "/Users/chriscrain/.config/bao-agent/agent.pid"
 
 vault {
@@ -39,14 +39,10 @@ auto_auth {
 }
 
 template {
+  # Kept in its own file: agent config is HCL1, and an inline heredoc was
+  # silently not registered as a template (the agent then exited with
+  # "no env templates or exec config").
+  source      = "/Users/chriscrain/.config/bao-agent/aws-credentials.ctmpl"
   destination = "/Users/chriscrain/.aws/credentials"
   perms       = 0600
-  contents    = <<-EOT
-    # Written by bao agent (~/.config/bao-agent/agent.hcl). Do not edit.
-    [cc-live-r2]
-    {{ with secret "secret/data/bootstrap/cloudflare-r2" -}}
-    aws_access_key_id     = {{ .Data.data.access_key_id }}
-    aws_secret_access_key = {{ .Data.data.secret_access_key }}
-    {{- end }}
-  EOT
 }
