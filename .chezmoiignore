@@ -1,2 +1,7 @@
 .config/ohmyzsh/.oh-my-zsh/cache
 worktree/
+{{ if ne .chezmoi.os "darwin" }}
+# launchd is macOS-only; the bao agent job and its config are darwin-only.
+Library/**
+.config/bao-agent/**
+{{ end }}

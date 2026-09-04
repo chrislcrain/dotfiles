@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- OpenBao Agent: keeps ~/.vault-token and ~/.aws/credentials fresh.
+     Config: ~/.config/bao-agent/agent.hcl. Log: ~/Library/Logs/bao-agent.log
+     Start now:   launchctl bootstrap gui/$UID ~/Library/LaunchAgents/dev.cc-live.bao-agent.plist
+     Restart:     launchctl kickstart -k gui/$UID/dev.cc-live.bao-agent   (after changing the role's policies)
+     Stop:        launchctl bootout gui/$UID/dev.cc-live.bao-agent -->
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>dev.cc-live.bao-agent</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/opt/homebrew/bin/bao</string>
+    <string>agent</string>
+    <string>-config={{ .chezmoi.homeDir }}/.config/bao-agent/agent.hcl</string>
+  </array>
+  <key>RunAtLoad</key><true/>
+  <key>KeepAlive</key><true/>
+  <key>ThrottleInterval</key><integer>30</integer>
+  <key>StandardOutPath</key><string>{{ .chezmoi.homeDir }}/Library/Logs/bao-agent.log</string>
+  <key>StandardErrorPath</key><string>{{ .chezmoi.homeDir }}/Library/Logs/bao-agent.log</string>
+</dict>
+</plist>

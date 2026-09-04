@@ -58,6 +58,8 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 export PATH="$PATH:$HOME/.local/bin"
+# OpenBao (cc-live). Auth is handled by the bao agent launchd job; this is just the address.
+export BAO_ADDR=https://bao.tail5d7bcc.ts.net
 
 # Go toolchain + `go install` binaries (e.g. sedge)
 export PATH="$PATH:$HOME/.local/go/bin:$HOME/go/bin"
