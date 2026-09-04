@@ -24,7 +24,17 @@ pid_file = "/Users/chriscrain/.config/bao-agent/agent.pid"
 
 vault {
   address = "https://bao.tail5d7bcc.ts.net"
-  retry { num_retries = 12 }   # tailnet may not be up yet at login
+  retry { num_retries = 12 }
+}
+
+# Ride out outages instead of dying. bao is tailnet-only, so every time
+# Tailscale is stopped or the laptop sleeps, reads fail; without this the
+# agent exited after exhausting retries (2026-09-04 01:42) and launchd
+# thrashed relaunching it into the same wall. The token and credentials files
+# already on disk stay valid meanwhile, so nothing downstream needs the agent
+# to be *alive* -- only to still be there when the network returns.
+template_config {
+  exit_on_retry_failure = false
 }
 
 auto_auth {
