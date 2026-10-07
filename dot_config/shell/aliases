@@ -24,3 +24,6 @@ alias k='kubectl'
 
 # nvim->vim
 alias vim='nvim'
+
+# claude
+alias cc='claude'
