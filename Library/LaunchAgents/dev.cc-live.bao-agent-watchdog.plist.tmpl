@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Watchdog for the OpenBao Agent: restarts dev.cc-live.bao-agent when bao
+     rejects its token. Script and rationale: ~/.config/bao-agent/watchdog.sh.
+     Log (restarts only): ~/Library/Logs/bao-agent-watchdog.log
+     Start now:   launchctl bootstrap gui/$UID ~/Library/LaunchAgents/dev.cc-live.bao-agent-watchdog.plist
+     Run once:    launchctl kickstart gui/$UID/dev.cc-live.bao-agent-watchdog
+     Stop:        launchctl bootout gui/$UID/dev.cc-live.bao-agent-watchdog -->
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>dev.cc-live.bao-agent-watchdog</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>{{ .chezmoi.homeDir }}/.config/bao-agent/watchdog.sh</string>
+  </array>
+  <key>RunAtLoad</key><true/>
+  <!-- Every 5 minutes. Intervals missed while asleep coalesce into one run
+       on wake, which is exactly when a token is most likely to have died. -->
+  <key>StartInterval</key><integer>300</integer>
+  <key>StandardOutPath</key><string>{{ .chezmoi.homeDir }}/Library/Logs/bao-agent-watchdog.log</string>
+  <key>StandardErrorPath</key><string>{{ .chezmoi.homeDir }}/Library/Logs/bao-agent-watchdog.log</string>
+</dict>
+</plist>
