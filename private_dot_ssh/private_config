@@ -1,0 +1,19 @@
+Include /Users/chriscrain/.config/colima/ssh_config
+
+# Home machines on the tailnet. Both trust the 1Password "CC Dev Droplet" key.
+# IdentitiesOnly + the .pub makes the agent offer just that key: offered all
+# six, Windows OpenSSH disconnects with "Too many authentication failures".
+Host cchome cchome.tail5d7bcc.ts.net
+	HostName cchome.tail5d7bcc.ts.net
+	User chris
+	IdentityFile ~/.ssh/cc-dev-droplet.pub
+	IdentitiesOnly yes
+
+Host vllm vllm.tail5d7bcc.ts.net
+	HostName vllm.tail5d7bcc.ts.net
+	User root
+	IdentityFile ~/.ssh/cc-dev-droplet.pub
+	IdentitiesOnly yes
+
+Host *
+	IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"

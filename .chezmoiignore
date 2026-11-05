@@ -4,4 +4,6 @@ worktree/
 # launchd is macOS-only; the bao agent job and its config are darwin-only.
 Library/**
 .config/bao-agent/**
+# ~/.ssh/config points at the 1Password agent socket, which only exists here.
+.ssh/**
 {{ end }}
